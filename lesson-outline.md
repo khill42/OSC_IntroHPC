@@ -7,6 +7,7 @@ Feel free to edit the topics for your section.
 ## 1. UNIX fundamentals - AR
 
 * SSH to a cluster
+* Log in with OnDemand
 * Bash fundamentals (`cd`, `ls`, ..., aliases, functions, ~/.bashrc)
 * Transferring files (`scp`? `sftp`? Maybe only one?)
 * Overview of HPC resources
@@ -17,7 +18,7 @@ Feel free to edit the topics for your section.
 
 ## 2. Submitting / running jobs - JS
 
-* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands natively)
+* Scheduler - lesson will cover PBS 
 
 	* Submitting jobs
 	* Checking status of jobs
