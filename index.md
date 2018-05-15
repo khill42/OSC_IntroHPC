@@ -8,7 +8,7 @@ This workshop is designed to enable researchers to use High Performance Computin
 
 By the end of this workshop, students will know how to:
 
-* Use the UNIX command line to connect to a remote computer.
+* Use the UNIX command line and the OnDemand web portal to connect to a remote computer.
 * Navigate and interact with files using the UNIX command line.
 * Work interactively with programs on an HPC setup.
 * Execute scripted workflows on an HPC.
