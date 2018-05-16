@@ -34,9 +34,7 @@ Additional parameters may also be necessary:
 
 <span style="color:white">blankline</span>
    
-> ## What's my User Name?
-> Your user name is your JC number.  Wherever you see \"jcXXYYYY\", be sure to replace it with your JC number.
-{: .callout}
+
 
 ## Basic SSH Connection
 
@@ -97,8 +95,8 @@ You'll see two different login options. Right now, we will just use our HPC user
 
 The rest of the exercises we'll work on today will be with OnDemand.
 
-There is an introduction to OnDemand on OSC's website [osc.edu/ondemand](https://www.osc.edu/resources/online_portals/ondemand)
-
+>There is an introduction to OnDemand on OSC's website [osc.edu/ondemand](https://www.osc.edu/resources/online_portals/ondemand)
+{: .callout}
 
 
 
