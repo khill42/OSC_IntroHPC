@@ -464,6 +464,12 @@ fileToMove
 ~~~
 {: .output}
 
+## File transfer using OnDemand
+
+The file manager application in OnDemand allows you to manage your files in a graphical format. You can copy, move, edit, 
+and transfer files easily. You can also navigate your filesystem by using your mouse. The path will always be displayed 
+at the top of the window. The file transfer tool is especially easy to use for transfering files from your computer to the 
+cluster by dragging and dropping or using the upload and download buttons.
 
 
 ## Grabbing files from the internet
