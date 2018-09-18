@@ -123,4 +123,4 @@ but these enable a number of key features like ensuring our user account and fil
 This is an important point to remember: 
 files saved on one node (computer) are available everywhere on the cluster!
 
-![Structure of Cluster](../files/cluster_login.png)
+![Structure of Cluster](../files/cluster_login.jpg)
