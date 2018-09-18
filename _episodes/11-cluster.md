@@ -55,33 +55,8 @@ To connect to our example computer, we will use SSH.
 
 ## Logging onto the cluster
 
-SSH allows us to connect to UNIX computers remotely, and use them as if they were our own.
-The general syntax of the connection command follows the format `ssh yourUsername@some.computer.address`
-Let's attempt to connect to the cluster now:
-```
-ssh yourUsername@graham.computecanada.ca
-```
-{: .bash}
-
-```{.output}
-The authenticity of host 'graham.computecanada.ca (199.241.166.2)' can't be established.
-ECDSA key fingerprint is SHA256:JRj286Pkqh6aeO5zx1QUkS8un5fpcapmezusceSGhok.
-ECDSA key fingerprint is MD5:99:59:db:b1:3f:18:d0:2c:49:4e:c2:74:86:ac:f7:c6.
-Are you sure you want to continue connecting (yes/no)?  # type "yes"!
-Warning: Permanently added the ECDSA host key for IP address '199.241.166.2' to the list of known hosts.
-yourUsername@graham.computecanada.ca's password:  # no text appears as you enter your password
-Last login: Wed Jun 28 16:16:20 2017 from s2.n59.queensu.ca
-
-Welcome to the ComputeCanada/SHARCNET cluster Graham.
-```
-
-If you've connected successfully, you should see a prompt like the one below. 
-This prompt is informative, and lets you grasp certain information at a glance:
-in this case `[yourUsername@computerName workingDirectory]$`.
-
-```{.output}
-[yourUsername@gra-login1 ~]$
-```
+You should be logged into OnDemand, we will open a terminal window from the Dashboard. Use the Clusters pulldown menu
+and choose "Owens Shell Access".
 
 ## Where are we? 
 
@@ -89,14 +64,14 @@ Very often, many users are tempted to think of a high-performance computing inst
 Sometimes, people even assume that the machine they've logged onto is the entire computing cluster.
 So what's really happening? What machine have we logged on to?
 The name of the current computer we are logged onto can be checked with the `hostname` command.
-(Clever users will notice that the current hostname is also part of our prompt!)
+
 
 ```
 hostname
 ```
 {: .bash}
 ```
-gra-login3
+owens-login04.hpc.osc.edu
 ```
 {: .output}
 
@@ -108,57 +83,35 @@ It should never be used for doing actual work.
 
 The real work on a cluster gets done by the "worker" nodes.
 Worker nodes come in many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs doing. 
-All interaction with the worker nodes is handled by a specialized piece of software called a scheduler. For Awoonga (the QRIS HPC) you can find that information [HERE](https://www.qriscloud.org.au/support/qriscloud-documentation/92-awoonga-user-guide#technical_overview) or we can find this out directly by viewing the worker nodes.
-We can view all of the worker nodes with the `pbsnodes -a` command.
+All interaction with the worker nodes is handled by a specialized piece of software called a scheduler. We use the Moab scheduler.
+We can view all of the worker nodes with the `pbsnodes -a` command. But this would be overwhelming, so we'll abbreviate it instead.
 
 ```
-pbsnodes -a
+pbsnodes -a | tail -n 50
 ```
 {: .bash}
 ```
-aw133
-     Mom = aw133.local
-     ntype = PBS
-     state = free
-     pcpus = 24
-     jobs = 25224.awongmgmr1/0, 25224.awongmgmr1/1, 25224.awongmgmr1/2, 25224.awongmgmr1/3, 25224.awongmgmr1/4, 25224.awongmgmr1/5, 25224.awongmgmr1/6, 25224.awongmgmr1/7, 25224.awongmgmr1/8, 25224.awongmgmr1/9, 25224.awongmgmr1/10, 25224.awongmgmr1/11, 25224.awongmgmr1/12, 25224.awongmgmr1/13, 25224.awongmgmr1/14, 25224.awongmgmr1/15, 25224.awongmgmr1/16, 25224.awongmgmr1/17, 25224.awongmgmr1/18, 25224.awongmgmr1/19
-     resources_available.arch = linux
-     resources_available.host = aw133
-     resources_available.intel = True
-     resources_available.mem = 264568300kb
-     resources_available.ncpus = 24
-     resources_available.vnode = aw133
-     resources_assigned.accelerator_memory = 0kb
-     resources_assigned.mem = 115343360kb
-     resources_assigned.naccelerators = 0
-     resources_assigned.ncpus = 20
-     resources_assigned.vmem = 0kb
-     comment = Eplg: 25216.awongmgmr1 Exit_status=1 at 20180110 04:56"
-     resv_enable = True
-     sharing = default_shared
-     license = l
+o0464
+     state = job-exclusive
+     power_state = Running
+     np = 28
+     properties = broadwell-ep,c6320,ib-i1l1s18,ib-i1,eth-owens-rack07h1,owens-rack07-c08,owens-rack07,owens,pfsdir,ime
+     ntype = cluster
+     jobs = 0-27/3816217.owens-batch.ten.osc.edu
+     status = opsys=linux,uname=Linux o0464.ten.osc.edu 3.10.0-693.37.4.el7.x86_64 #1 SMP Fri Aug 10 12:34:55 EDT 2018 x86_64,sessions=2618 147256,nsessions=2,nusers=2,idletime=44307,totmem=182247896kb
+,availmem=167945740kb,physmem=131916252kb,ncpus=28,loadave=23.14,gres=,netload=1368471174094,size=899955648kb:909207804kb,state=free,varattr= ,cpuclock=Fixed,macaddr=7c:d3:0a:b1:66:ea,version=6.1.2,rec
+time=1537282339,jobs=3816217.owens-batch.ten.osc.edu
+     mom_service_port = 15002
+     mom_manager_port = 15003
+     total_sockets = 2
+     total_numa_nodes = 2
+     total_cores = 28
+     total_threads = 28
+     dedicated_sockets = 0
+     dedicated_numa_nodes = 0
+     dedicated_cores = 0
+     dedicated_threads = 28
 
-aw134
-     Mom = aw134.local
-     ntype = PBS
-     state = job-busy,busy
-     pcpus = 24
-     jobs = 25235.awongmgmr1/0, 25235.awongmgmr1/1, 25235.awongmgmr1/2, 25235.awongmgmr1/3, 25235.awongmgmr1/4, 25235.awongmgmr1/5, 25235.awongmgmr1/6, 25235.awongmgmr1/7, 25236.awongmgmr1/8, 25236.awongmgmr1/9, 25236.awongmgmr1/10, 25236.awongmgmr1/11, 25236.awongmgmr1/12, 25236.awongmgmr1/13, 25236.awongmgmr1/14, 25236.awongmgmr1/15, 25237.awongmgmr1/16, 25237.awongmgmr1/17, 25237.awongmgmr1/18, 25237.awongmgmr1/19, 25237.awongmgmr1/20, 25237.awongmgmr1/21, 25237.awongmgmr1/22, 25237.awongmgmr1/23
-     resources_available.arch = linux
-     resources_available.host = aw134
-     resources_available.intel = True
-     resources_available.mem = 264568300kb
-     resources_available.ncpus = 24
-     resources_available.vnode = aw134
-     resources_assigned.accelerator_memory = 0kb
-     resources_assigned.mem = 25165824kb
-     resources_assigned.naccelerators = 0
-     resources_assigned.ncpus = 24
-     resources_assigned.vmem = 0kb
-     comment = Eplg: 25204.awongmgmr1 Exit_status=1 at 20180110 03:02"
-     resv_enable = True
-     sharing = default_shared
-     license = l
 
 ```
 {: .output}
@@ -169,3 +122,5 @@ Although we do not interact with these directly,
 but these enable a number of key features like ensuring our user account and files are available throughout the cluster.
 This is an important point to remember: 
 files saved on one node (computer) are available everywhere on the cluster!
+
+![Structure of Cluster](../files/cluster.png)
