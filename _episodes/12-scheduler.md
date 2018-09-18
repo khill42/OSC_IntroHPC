@@ -302,9 +302,11 @@ for a new job, create or transfer a job script and input files, edit everything,
 
 > ## Submit a job from a template in the Job Composer
 >
-> Find MPI Hello World job in the templates.
-> Edit the job script to correct the project number.
-> Submit job and view results.
+> Find MPI Hello World job in the templates
+>
+> Edit the job script to correct the project number
+>
+>Submit job and view results
 {: .challenge}
 
 
