@@ -37,12 +37,12 @@ test.pbs
 ```
 ```
 #!/bin/bash
-#PBS -q workq
-#PBS -A qris-gu
-#Give the job a name ... in the past had to start alphabetical and be < 13 chars
+#PBS -q debug
+#PBS -A PZSXXXX
+  #Give the job a name 
 #PBS -N test_script
 #PBS -l walltime=00:03:00
-#PBS -l select=1:ncpus=2:mem=2g
+#PBS -l nodes=1:ppn=2
 
 echo 'This script is running on:'
 hostname
@@ -58,9 +58,9 @@ To test a small pbs script, run it as:
 ```
 ~> ./test.pbs
 This script is running on:
-awoonga1.local
+owens-login04.hpc.osc.edu
 The date is :
-Wed Jan 10 11:27:38 AEST 2018
+Tue Sep 18 14:21:02 EDT 2018
 ```
 This script will take 2 minutes to finish due to the `sleep 120` command.
 
@@ -77,7 +77,7 @@ To submit this job to the scheduler, we use the `qsub` command.
 
 ```
 ~> qsub test.pbs
-25333.awongmgmr1
+3818006.owens-batch.ten.osc.edu
 ~>
 ```
 The number that first appears is your Job ID. When the job is completed, you will get two files: an Output and an Error file (even if there is no errors). They will be named {JobName}.o{JobID} and {JobName}.e{JobID} respectively.
@@ -86,17 +86,23 @@ And that's all we need to do to submit a job.
 To check on our job's status, we use the command `qstat`.
 
 ```
-~> qstat
-Job id            Name             User              Time Use S Queue
-----------------  ---------------- ----------------  -------- - -----
-25399.awongmgmr1  test_script      amandamiotto      00:00:00 R Short  
+~> qstat -u username
+owens-batch.ten.osc.edu: 
+                                                                                  Req'd       Req'd       Elap
+Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
+----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
+3818006.owens-batch.te  kcahill     debug    test_script         --      1      2       8gb  00:03:00 Q       --   
 ```
 
 {: .output}
 
-We can see all the details of our job, most importantly that it is in the "R" or "RUNNING" state.
-Sometimes our jobs might need to wait in a queue ("PENDING") or have an error.
-The best way to check our job's status is with `qtat`.
+We can see all the details of our job, most importantly if it is in the "R" or "RUNNING" state.
+Sometimes our jobs might need to wait in a queue ("QUEUED") or have an error.
+The best way to check our job's status is with `qstat`. It is easiest to view just your own jobs
+in the queue with the `qstat -u username`. Otherwise, you get the entire queue.
+
+Also, OnDemand allows you to view the queue for all systems (not just the one you are on in the shell) under Jobs, select
+Active Jobs. You can filter by your jobs, your group's jobs, and all jobs.
 
 ## Customizing your job
 
@@ -108,12 +114,12 @@ test.pbs
 ```
 ```
 #!/bin/bash
-#PBS -q workq
-#PBS -A qris-gu
-#Give the job a name ... in the past had to start alphabetical and be < 13 chars
+#PBS -q debug
+#PBS -A PZSXXXX
+   #Give the job a name 
 #PBS -N test_script
 #PBS -l walltime=00:03:00
-#PBS -l select=1:ncpus=2:mem=2g
+#PBS -l nodes=1:ppn=2
 
 echo 'This script is running on:'
 hostname
@@ -136,8 +142,8 @@ In our example, we have set the following parameters:
  
 | Flag | Name | Example Setting | Notes|
 | --- | --- | --- | --- |
-| -q | queue | workq | See next section for queue info |
-| -A | account |qris-gu| Discuss with your admins or university re account |
+| -q | queue | debug | See next section for queue info |
+| -A | project |PZS| You must specify a project for each job |
 | -N | jobname| test_script | Name of your script (no spaces, alphanumeric only) |
 | -l | resource list| multiple settings| See next segment|
 
@@ -156,9 +162,9 @@ and attempt to run a job for two minutes.
 ```
 #!/bin/bash
 
-#PBS -A qris-gu
+#PBS -A PZSXXXX
 #PBS -l walltime=00:00:30  ## <- altered to 30 seconds
-#PBS -l select=1:ncpus=2:mem=2g
+#PBS -l nodes=1:ppn=2
 
 echo 'This script is running on:'
 hostname
@@ -188,10 +194,10 @@ This means that one user cannot mess up the experience of others,
 the only jobs affected by a mistake in scheduling will be their own.
 
 #### Compute Resources and Parameters
-Compute parameters, represented by `select=1:ncpus=2:mem=2g` can be considered individually. The argument `select` specifies the number of nodes (or chunks of resource) required; `ncpus` indicates the number of CPUs per chunk required.
+Compute parameters, represented by `nodes=1:ppn=2` can be considered individually. The argument `nodes` specifies the number of nodes (or chunks of resource) required; `ppn` indicates the number of CPUs per chunk required.
 
 
-| select |  ncpus |  Description|
+| nodes |  ppn |  Description|
 |---|---|---|
 | 2|  16|  32 Processor job, using 2 nodes and 16 processors per node| 
 | 4|  8|  32 Processor job, using 4 nodes and 8 processors per node| 
@@ -211,26 +217,34 @@ man qsub
 
 ## Queues
 
-There are usually a number of available queues to use on your HPC. To see what queues are available, you can use the command `qstat -Q`. If you are not sure which to use, workq is a good start and is generally set as the default.
+There are usually a number of available queues to use on your HPC. Remember: Each cluster has separate queues. Right now, we 
+are looking only at the queues on Owens. The other clusters have similar queues but they are not the same. 
+To see what queues are available, you can use the command `qstat -Q`. You do not have to specify a queue for most jobs. 
+Your job will be routed to the appropriate queue based on node and walltime request.
 
 ```
 ~> qstat -Q
-Queue              Max   Tot Ena Str   Que   Run   Hld   Wat   Trn   Ext Type
----------------- ----- ----- --- --- ----- ----- ----- ----- ----- ----- ----
-workq                0     0 yes yes     0     0     0     0     0     0 Rout
-Short                0    18 yes yes     1    17     0     0     0     0 Exec
-Single               0    36 yes yes     0    36     0     0     0     0 Exec
-Interact             0     8 yes yes     0     7     0     0     0     0 Exec
-Long                 0     2 yes yes     0     2     0     0     0     0 Exec
-Special              0     0 yes yes     0     0     0     0     0     0 Exec
-DeadEnd              0     0 yes  no     0     0     0     0     0     0 Exec
+Queue              Max    Tot   Ena   Str   Que   Run   Hld   Wat   Trn   Ext T   Cpt
+----------------   ---   ----    --    --   ---   ---   ---   ---   ---   --- -   ---
+batch                0    179   yes   yes   179     0     0     0     0     0 R     0
+debug                0      2   yes   yes     0     0     0     0     0     0 E     2
+dedicated            0      0   yes   yes     0     0     0     0     0     0 E     0
+hugemem              0     12   yes   yes     0    12     0     0     0     0 E     0
+largeparallel        0     47   yes   yes    39     8     0     0     0     0 E     0
+longserial           0    255   yes   yes     0   255     0     0     0     0 E     0
+montecarlo           0      0   yes   yes     0     0     0     0     0     0 E     0
+newsyntax            0      0   yes   yes     0     0     0     0     0     0 E     0
+parallel             0    115   yes   yes    14    81    19     0     0     0 E     1
+parhugemem           0      3   yes   yes     2     1     0     0     0     0 E     0
+serial               0    900   yes   yes    55   764    56     0     0     0 E    25
+longparallel         0      0   yes   yes     0     0     0     0     0     0 E     0
 ```
 {: .bash}
 
 
 > ## Submitting resource requests
 >
-> Submit a job that will use 2 cpus, 4 gigabytes of memory, and 5 minutes of walltime.
+> Submit a job that will use 1 node, 14 processors, and 5 minutes of walltime.
 {: .challenge}
 
 
@@ -251,6 +265,7 @@ PBS sets multiple environment variables at submission time. The following PBS va
 | PBS_O_PATH|  Original PBS path. Used with pbsdsh.|
 | PBS_O_QUEUE|  Queue job was submitted to.|
 | PBS_O_WORKDIR|  PBS sets the environment variable PBS_O_WORKDIR to the directory from which the batch job was submitted PBS_QUEUE Queue job is running in (typically this is the same as PBS_O_QUEUE). |
+| $TEMPDIR|  Compute node where job is assigned.|
 
 ## Canceling a job
 
@@ -261,12 +276,13 @@ Let's submit a job and then cancel it using its job number.
 
 ```
 > qsub test2.pbs
-27790.awongmgmr1
+3818018.owens-batch.ten.osc.edu
 
-> qstat
-Job id            Name             User              Time Use S Queue
-----------------  ---------------- ----------------  -------- - -----
-27790.awongmgmr1  test2.pbs        amandamiotto      00:00:00 R Short           
+> qstat -u kcahill
+                                                                                 Req'd       Req'd       Elap
+Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
+----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
+3818018.owens-batch.te  kcahill     debug    test_script         --      1      2       8gb  00:03:00 Q       --          
 
 ```
 
@@ -274,91 +290,36 @@ Now cancel the job with it's job number.
 Absence of any job info indicates that the job has been successfully canceled.
 
 ```
-> qdel 27790
-> qstat
+> qdel 3818018
+> qstat -u kcahill
 >
 ```
+## Submit Jobs with job composer on OnDemand
 
+OnDemand also has a tool for job creation and submission to the batch system. The same information as above applies since
+it still uses the same underlying queue system. In the Job Composer, you can create a new location in your home directory
+for a new job, create or transfer a job script and input files, edit everything, and submit your job all from this screen.
 
+> ## Submit a job from a template in the Job Composer
+>
+> Find MPI Hello World job in the templates.
+> Edit the job script to correct the project number.
+> Submit job and view results.
+{: .challenge}
 
-## Below this is all SLURM, need to rewrite as PBS
-
-
-
-## Other types of jobs
-
-Up to this point, we've focused on running jobs in batch mode.
-SLURM also provides the ability to run tasks as a one-off or start an interactive session.
-
-There are very frequently tasks that need to be done semi-interactively.
-Creating an entire job script might be overkill, 
-but the amount of resources required is too much for a login node to handle.
-A good example of this might be building a genome index for alignment with a tool like [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml).
-Fortunately, we can run these types of tasks as a one-off with `srun`.
-
-`srun` runs a single command on the cluster and then exits.
-Let's demonstrate this by running the `hostname` command with `srun`.
-(We can cancel an `srun` job with `Ctrl-c`.)
-
-```
-srun hostname
-```
-{: .bash}
-```
-gra752
-```
-{: .output}
-
-`srun` accepts all of the same options as `sbatch`.
-However, instead of specifying these in a script, 
-these options are specified on the command-line when starting a job.
-To submit a job that uses 2 cpus for instance, 
-we could use the following command
-(note that SLURM's environment variables like `SLURM_CPUS_PER_TASK` are only available to batch jobs run with `sbatch`):
-
-```
-srun -c 2 echo "This job will use 2 cpus."
-```
-{: .bash}
-```
-This job will use 2 cpus.
-```
-{: .output}
 
 ### Interactive jobs
 
 Sometimes, you will need a lot of resource for interactive use.
 Perhaps it's the first time running an analysis 
 or we are attempting to debug something that went wrong with a previous job.
-Fortunately, SLURM makes it easy to start an interactive job with `srun`:
+Fortunately, PBS makes it easy to start an interactive job with `qsub -I`:
 
 ```
-srun --x11 --pty bash
+qsub -I -A PZSXXX -l nodes=1:ppn=28 -l walltime=00:01:00 
 ```
 {: .bash}
 
-> ## Note for administrators
-> 
-> The `--x11` option will not work unless the [slurm-spank-x11](https://github.com/hautreux/slurm-spank-x11) plugin is installed.
-> You should also make sure `xeyes` is installed as an example X11 app 
-> (`xorg-x11-apps` package on CentOS).
-> If you do not have these installed, just have students use `srun --pty bash` instead.
-{: .callout}
+You can also request interactive jobs on OnDemand using the Interative Apps menu
 
-You should be presented with a bash prompt.
-Note that the prompt will likely change to reflect your new location, 
-in this case the worker node we are logged on.
-You can also verify this with `hostname`.
-
-> ## Creating remote graphics
-> 
-> To demonstrate what happens when you create a graphics window on the remote node, 
-> use the `xeyes` command. 
-> A relatively adorable pair of eyes should pop up (press `Ctrl-c` to stop).
->
-> Note that this command requires you to have connected with X-forwarding enabled
-> (`ssh -X username@host.address.ca`).
-{: .challenge}
-
-When you are done with the interactive job, type `exit` to quit your session.
 
