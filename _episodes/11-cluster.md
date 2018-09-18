@@ -84,7 +84,7 @@ It should never be used for doing actual work.
 The real work on a cluster gets done by the "worker" nodes.
 Worker nodes come in many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs doing. 
 All interaction with the worker nodes is handled by a specialized piece of software called a scheduler. We use the Moab scheduler.
-We can view all of the worker nodes with the `pbsnodes -a` command. But this would be overwhelming, so we'll abbreviate it instead.
+We can view all of the worker nodes with the `pbsnodes -a` command. But this would be overwhelming since we have over 800 compute nodes, so we'll abbreviate it instead.
 
 ```
 pbsnodes -a | tail -n 50
