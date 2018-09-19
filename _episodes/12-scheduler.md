@@ -267,6 +267,10 @@ PBS sets multiple environment variables at submission time. The following PBS va
 | PBS_O_WORKDIR|  PBS sets the environment variable PBS_O_WORKDIR to the directory from which the batch job was submitted PBS_QUEUE Queue job is running in (typically this is the same as PBS_O_QUEUE). |
 | $TEMPDIR|  Compute node where job is assigned.|
 
+> ## Quick Reference
+>A good reference for these and other PBS variables is part of our [Batch Processing at OSC](https://www.osc.edu/supercomputing/batch-processing-at-osc) pages under [Batch-Related Command Summary](https://www.osc.edu/supercomputing/batch-processing-at-osc/batch-related-command-summary).
+{: .callout}
+
 ## Canceling a job
 
 
