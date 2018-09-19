@@ -108,6 +108,10 @@ cp *.* $PBS_O_WORKDIR
 ```
 {: bash}
 
+This job requests a full node on Owens, which is not needed for this calculation, but if you are unsure about how much 
+memory or how many processors your job will require, it is okay to request more than you need. As you run jobs, 
+you will get more comfortable identifying the amount of resources you need.
+
 ```
 cd $PBS_O_WORKDIR
 ```
@@ -133,10 +137,6 @@ Finally, we move the job to the compute node and run the software. All the files
 the compute node. This makes your job run faster and keeps the job traffic from impacting the network. In the final
 line, we copy back any output files. I used a very general wildcard to copy everything back, but you can be more
 specific, based on your job.
-
-This job requests a full node on Owens, which is not needed for this job, but if you are unsure about how much 
-memory or how many processors your job will require, it is okay to request more than you need. As you run jobs, 
-you will get more comfortable identifying the amount of resources you need.
 
 A note about memory: Memory (RAM) is allocated based on number of processors requested per node. For example, if you
 request 14 ppn on Owens, that is half the available processors so your job will receive half the available memory (~64GB).
