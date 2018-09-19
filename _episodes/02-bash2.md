@@ -1,7 +1,7 @@
 ---
 title: "Basic UNIX Commands"
-teaching: 0
-exercises: 0
+teaching: 15
+exercises: 15
 questions:
 - "What is the syntax of UNIX commands?"
 - "How do I navigate the file system?"
