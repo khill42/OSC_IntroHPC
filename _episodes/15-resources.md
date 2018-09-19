@@ -72,7 +72,7 @@ Resource units charged (estimate):
 -----------------------
 ```
 {: .bash}
-```
+
 
 
 * **Resources Requested** - What did you request?
@@ -82,7 +82,66 @@ Resource units charged (estimate):
 * **Virtual Memory** - Amount of total temporary memory used.
 * **Resource Units** - RUs charged against your project for this job.
 
+## Do not run jobs on the login nodes
 
+The example above was a small process that can be run on the login node without too much disruption. However, it
+is good practice to avoid running anything resource intensive on the login nodes. There is a hard limit of 1GB RAM and 
+20 minutes, anything larger will be automatically stopped.
+
+Here is an example of a job script that would run the process above on a compute node and copy the results back.
+
+```
+#PBS -N bowtie-dros
+#PBS -l walltime=01:00:00
+#PBS -l nodes=1:ppn=28
+#PBS -A PZSXXXX
+#PBS -j oe
+
+set echo
+module load bowtie2
+cd $PBS_O_WORKDIR
+cp Drosophila_melanogaster.BDGP6.dna.toplevel.fa $TMPDIR
+cd $TMPDIR
+bowtie2-build Drosophila_melanogaster.BDGP6.dna.toplevel.fa dros-index
+cp *.* $PBS_O_WORKDIR
+
+```
+{: bash}
+
+```
+cd $PBS_O_WORKDIR
+```
+{: bash}
+This line ensures we are in the correct starting directory, where the input files are located. If your input files
+are not in same directory as your job script, you can specify a different location. 
+
+```
+cp Drosophila_melanogaster.BDGP6.dna.toplevel.fa $TMPDIR
+```
+{: bash}
+
+Now, we can copy the input file to the compute node, known as `$TMPDIR` until the job is assigned to a node. 
+
+```
+cd $TMPDIR
+bowtie2-build Drosophila_melanogaster.BDGP6.dna.toplevel.fa dros-index
+cp *.* $PBS_O_WORKDIR
+```
+{: bash}
+
+Finally, we move the job to the compute node and run the software. All the files will be read and written on
+the compute node. This makes your job run faster and keeps the job traffic from impacting the network. In the final
+line, we copy back any output files. I used a very general wildcard to copy everything back, but you can be more
+specific, based on your job.
+
+This job requests a full node on Owens, which is not needed for this job, but if you are unsure about how much 
+memory or how many processors your job will require, it is okay to request more than you need. As you run jobs, 
+you will get more comfortable identifying the amount of resources you need.
+
+A note about memory: Memory (RAM) is allocated based on number of processors requested per node. For example, if you
+request 14 ppn on Owens, that is half the available processors so your job will receive half the available memory (~64GB).
+This applies to Oakley, Owens, and Pitzer. On Ruby, you cannot request less than a whole node, so there is no need to 
+request memory at all.
 
 ## Playing nice in the sandbox
 
@@ -92,11 +151,9 @@ and monitor how many resources your jobs are using.
 So here are a couple final words to live by:
 
 * Don't run jobs on the login node, though quick tests are generally fine. 
-  A "quick test" is generally anything that uses less than 10GB of memory, 4 CPUs, and 15 minutes of time.
-  Remember, the login node is to be shared with other users.
-
-* If someone is being inappropriate and using the login node to run all of their stuff, 
-  message an administrator to kill their stuff.
+  A "quick test" is generally anything that uses less than 1GB of memory, and 20 minutes of time.
+  Anything larger will be automatically killed by the system. Remember, the login node is to 
+  be shared with other users. 
 
 * Compress files before transferring to save file transfer times with large datasets.
 
@@ -107,10 +164,10 @@ So here are a couple final words to live by:
 * Before submitting a run of jobs, submit one as a test first to make sure everything works.
 
 * The less resources you ask for, the faster your jobs will find a slot in which to run.
-  Lots of small jobs generally beat a couple big jobs.
+  The more accurate your walltime is, the sooner your job will run.
 
 * You can generally install software yourself, but if you want a shared installation of some kind,
-  it might be a good idea to message an administrator.
+  it might be a good idea to email OSCHelp@osc.edu.
 
 * Always use the default compilers if possible. Newer compilers are great, but older stuff generally
   means that your software will still work, even if a newer compiler is loaded.
