@@ -1,6 +1,6 @@
 ---
 title: "Using a cluster: Accessing software"
-teaching: 30
+teaching: 20
 exercises: 15
 questions:
 - "How do we load and unload software packages?"
@@ -51,21 +51,39 @@ module avail
 ```
 {: .bash}
 ```
------------------------------ MPI-dependent avx2 modules -------------------------------
-   abinit/8.2.2     (chem)      lammps/20170331                    plumed/2.3.0        (chem)
-   abyss/1.9.0      (bio)       mrbayes/3.2.6            (bio)     pnetcdf/1.8.1       (io)
-   boost-mpi/1.60.0 (t)         ncl/6.4.0                          quantumespresso/6.0 (chem)
-   cdo/1.7.2        (geo)       ncview/2.1.7             (vis)     ray/2.3.1           (bio)
+--------------------------- /usr/local/share/lmodfiles/MPI/intel/18.0/mvapich2/2.3 -----------------------------
+   darshan/3.1.6    gromacs/2018.2    netcdf/4.6.1    omb/5.4.3         scalapack/2.0.2
+   fftw3/3.3.8      hdf5/1.10.2       nwchem/6.8      parmetis/4.0.3    siesta-par/4.0.2
+-------------------------------- /usr/local/share/lmodfiles/Compiler/intel/18.0 ---------------------------------
+   R/3.5.0                   libjpeg-turbo/1.5.3    mvapich2/2.3b                netcdf-serial/4.3.3.1
+   boost/1.67.0              metis/5.1.0            mvapich2/2.3rc1-gpu          netcdf-serial/4.6.1   (D)
+   cxx17/7.3.0        (L)    mkl/2018.0.3           mvapich2/2.3rc1              openmpi/1.10.5
+   hdf5-serial/1.8.17        mvapich2/2.2-debug     mvapich2/2.3rc2-gpu          openmpi/3.1.0-hpcx    (D)
+   hdf5-serial/1.10.2 (D)    mvapich2/2.2-gpu       mvapich2/2.3rc2              siesta/4.0.2
+   intelmpi/2018.0           mvapich2/2.2           mvapich2/2.3        (L,D)
+   intelmpi/2018.3    (D)    mvapich2/2.3b-gpu      ncarg/6.5.0
+---------------------------------------- /usr/local/share/lmodfiles/Core ----------------------------------------
+   abaqus/6.14                   gnu/7.3.0                  (D)      qchem/5.1.1-openmp
+   abaqus/2016                   gnuplot/5.2.2                       qchem/5.1.1             (D)
+   abaqus/2017                   hadoop/3.0.0-alpha1                 qhull/2015.2
+   abaqus/2018            (D)    hisat2/2.1.0                        relion2/2.0
+   allinea/6.0.6                 homer/4.8                           remora/1.8.0
+   allinea/7.0            (D)    hpctoolkit/5.3.2                    rna-seqc/1.1.8
+   allinea/7.1                   htslib/1.6                          rstudio/1.0.136_server
+   ansys/17.2                    hyperworks/13                       rstudio/1.1.380_server  (D)
+   ansys/18.1                    hyperworks/2017.1          (D)      salmon/0.8.2
+   ansys/19.1             (D)    ime/1.1                             salome/8.2.0
+   arm-ddt/6.0.6                 intel/16.0.3                        sambamba/0.6.6
+   arm-ddt/7.0                   intel/16.0.8                        samtools/1.3.1          (D)
+   arm-ddt/7.1                   intel/17.0.2                        samtools/1.6
+   arm-ddt/18.2.1         (D)    intel/17.0.5                        samtools/1.9
+   arm-map/6.0.6                 intel/17.0.7                        schrodinger/15
+   arm-map/7.0                   intel/18.0.0                        schrodinger/16
+   arm-map/7.1                   intel/18.0.2                        schrodinger/2018.3      (D)
+   arm-map/18.2.1         (D)    intel/18.0.3               (L,D)    singularity/current
+   arm-pr/6.0.6                  java/1.7.0                          snpeff/4.2
+   arm-pr/7.0                    java/1.8.0_131             (D)      spark/rdma-0.9.4
 
-
-[snip]
-
-   t:        Tools for development / Outils de développement
-   vis:      Visualisation software / Logiciels de visualisation
-   chem:     Chemistry libraries/apps / Logiciels de chimie
-   geo:      Geography libraries/apps / Logiciels de géographie
-   phys:     Physics libraries/apps / Logiciels de physique
-   Aliases:  Aliases exist: foo/1.2.3 (1.2) means that "module load foo/1.2" will load foo/1.2.3
    D:        Default Module
 
 Use "module spider" to find all possible modules.
@@ -85,19 +103,21 @@ which python3
 ```
 {: .bash}
 ```
-/usr/bin/which: no python3 in (/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin)
+/usr/bin/which: no python3 in /usr/bin/which: no python3 in (/opt/mvapich2/intel/18.0/2.3/bin:/usr/local/gnu/7.3.0/bin:/opt/intel/itac/2018.3.022/bin:/opt/intel/advisor_2018/bin
+64:/opt/intel/vtune_amplifier_2018/bin64:/opt/intel/inspector_2018/bin64:/opt/intel/compilers_and_libraries_2018.3.222/linux/bin/intel64:/opt/torque/bin:/usr/lib64/qt-3.3/bin:/opt/osc/bin:/opt/moab/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/ibutils/bin:/opt/ddn/ime/bin:/opt/pup
+petlabs/bin)
 ```
 {: .output}
 
-We can load the `python3` command with `module load`.
+We can load the `python/3.5` command with `module load`.
 
 ```
-module load python
+module load python/3.5
 which python3
 ```
 {: .bash}
 ```
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin/python3
+/usr/local/anaconda3/bin/python3
 ```
 {: .output}
 
@@ -115,19 +135,20 @@ echo $PATH
 ```
 {: .bash}
 ```
-/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin:/opt/software/slurm/16.05.9/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/avx2/Compiler/intel2016.4/openmpi/2.1.1/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/mkl/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/imkl/11.3.4.258/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/ifort/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/gcc-5.4.0/bin:/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/icc/2016.4.258/compilers_and_libraries_2016.4.258/linux/bin/intel64:/opt/software/bin:/opt/puppetlabs/puppet/bin:/opt/software/slurm/current/bin:/opt/software/slurm/bin:/cvmfs/soft.computecanada.ca/easybuild/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin:/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/sbin:/cvmfs/soft.computecanada.ca/custom/bin:/opt/software/slurm/current/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/yourUsername/.local/bin:/home/yourUsername/bin
+/usr/local/anaconda3/bin:/opt/mvapich2/intel/18.0/2.3/bin:/usr/local/gnu/7.3.0/bin:/opt/intel/itac/2018.3.022/bin:/opt/intel/advisor_2018/bin64:/opt/intel/vtune_amplifier_2018/bin64:/opt/intel/inspector_2018/bin64:/opt/intel/compilers_and_libraries_2018.3.222/linux/bin/intel64:/opt/torque/bin:/usr/lib64/qt3.3/bin:/opt/osc/bin:/opt/moab/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/ibutils/bin:/opt/ddn/ime/bin:/opt/puppetlab
+s/bin
 ```
 {: .output}
 
 You'll notice a similarity to the output of the `which` command. 
 In this case, there's only one difference:
-the `/cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin` directory at the beginning.
+the `/usr/local/anaconda3/bin` directory at the beginning.
 When we ran `module load python/3.5.2`, 
 it added this directory to the beginning of our `$PATH`.
 Let's examine what's there:
 
 ```
-ls /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/python-3.5.2/bin
+ls /usr/local/anaconda3/bin
 ```
 {: .bash}
 ```
@@ -152,80 +173,28 @@ module list
 {: .bash}
 ```
 Currently Loaded Modules:
-  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
-  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
+  1) cxx17/7.3.0   2) intel/18.0.3   3) mvapich2/2.3   4) modules/au2018   5) python/3.5
 
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-   m:  MPI implementations / Implémentations MPI
-   t:  Tools for development / Outils de développement
-   H:             Hidden Module
+  
 ```
 {: .output}
 
+
+
 ```
-module load beast
+module unload python/3.5
 module list
 ```
 {: .bash}
 ```
 Currently Loaded Modules:
-  1) nixpkgs/.16.09    (H,S)   5) intel/2016.4  (t)   9) java/1.8.0_121   (t)
-  2) icc/.2016.4.258   (H)     6) openmpi/2.1.1 (m)  10) beagle-lib/2.1.2 (bio)
-  3) gcccore/.5.4.0    (H)     7) StdEnv/2016.4 (S)  11) beast/2.4.0      (chem)
-  4) ifort/.2016.4.258 (H)     8) python/3.5.2  (t)
-
-  Where:
-   S:     Module is Sticky, requires --force to unload or purge
-   bio:   Bioinformatic libraries/apps / Logiciels de bioinformatique
-   m:     MPI implementations / Implémentations MPI
-   t:     Tools for development / Outils de développement
-   chem:  Chemistry libraries/apps / Logiciels de chimie
-   H:                Hidden Module
-```
-{: .output}
-
-So in this case, loading the `beast` module (a bioinformatics software package),
-also loaded `java/1.8.0_121` and `beagle-lib/2.1.2` as well.
-Let's try unloading the `beast` package.
-
-```
-module unload beast
-module list
-```
-{: .bash}
-```
-Currently Loaded Modules:
-  1) nixpkgs/.16.09  (H,S)   3) gcccore/.5.4.0    (H)   5) intel/2016.4  (t)   7) StdEnv/2016.4 (S)
-  2) icc/.2016.4.258 (H)     4) ifort/.2016.4.258 (H)   6) openmpi/2.1.1 (m)   8) python/3.5.2  (t)
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-   m:  MPI implementations / Implémentations MPI
-   t:  Tools for development / Outils de développement
-   H:             Hidden Module
+  1) cxx17/7.3.0   2) intel/18.0.3   3) mvapich2/2.3   4) modules/au2018
 ```
 {: .output}
 
 So using `module unload` "un-loads" a module along with it's dependencies.
 If we wanted to unload everything at once, we could run `module purge` (unloads everything).
 
-```
-module purge
-```
-{: .bash}
-```
-The following modules were not unloaded:
-  (Use "module --force purge" to unload all):
-
-  1) StdEnv/2016.4    3) icc/.2016.4.258   5) ifort/.2016.4.258   7) imkl/11.3.4.258
-  2) nixpkgs/.16.09   4) gcccore/.5.4.0    6) intel/2016.4        8) openmpi/2.1.1
-```
-{: .output}
-
-Note that `module purge` is informative. 
-It lets us know that all but a default set of packages have been unloaded
-(and how to actually unload these if we truly so desired).
 
 ## Software versioning
 
@@ -246,106 +215,39 @@ module avail
 ```
 {: .bash}
 ```
------------------------------------------------------------ Core Modules -----------------------------------------------------------
-   StdEnv/2016.4 (S,L)     imkl/11.3.4.258 (L,math,D:11)      mcr/R2014b         (t)          python/3.5.2     (t,D:3:3.5)
-   bioperl/1.7.1 (bio)     imkl/2017.1.132 (math,2017)        mcr/R2015a         (t)          qt/4.8.7         (t)
-   eclipse/4.6.0 (t)       impute2/2.3.2   (bio)              mcr/R2015b         (t)          qt/5.6.1         (t,D)
-   eigen/3.3.2   (math)    intel/2016.4    (L,t,D:16:2016)    mcr/R2016a         (t)          signalp/4.1f     (bio)
-   fastqc/0.11.5 (bio)     intel/2017.1    (t,17:2017)        mcr/R2016b         (t,D)        spark/2.1.0      (t)
-   g2clib/1.6.0            jasper/1.900.1  (vis)              minimac2/2014.9.15 (bio)        spark/2.1.1      (t,D)
-   g2lib/1.4.0             java/1.8.0_121  (L,t)              perl/5.22.2        (t)          tbb/2017.2.132   (t)
-   gatk/3.7      (bio)     mach/1.0.18     (bio)              pgi/17.3           (t)          tmhmm/2.0c       (bio)
-   gcc/4.8.5     (t)       mcr/R2013a      (t)                picard/2.1.1       (bio)        trimmomatic/0.36 (bio)
-   gcc/5.4.0     (t,D)     mcr/R2014a      (t)                python/2.7.13      (t,2:2.7)
+---------------------------------------- /usr/local/share/lmodfiles/Core ----------------------------------------
+   abaqus/6.14                   gnu/7.3.0                  (D)      qchem/5.1.1-openmp
+   abaqus/2016                   gnuplot/5.2.2                       qchem/5.1.1             (D)
+   abaqus/2017                   hadoop/3.0.0-alpha1                 qhull/2015.2
+   abaqus/2018            (D)    hisat2/2.1.0                        relion2/2.0
+   allinea/6.0.6                 homer/4.8                           remora/1.8.0
+   allinea/7.0            (D)    hpctoolkit/5.3.2                    rna-seqc/1.1.8
+   allinea/7.1                   htslib/1.6                          rstudio/1.0.136_server
+   ansys/17.2                    hyperworks/13                       rstudio/1.1.380_server  (D)
+   ansys/18.1                    hyperworks/2017.1          (D)      salmon/0.8.2
+   ansys/19.1             (D)    ime/1.1                             salome/8.2.0
+   arm-ddt/6.0.6                 intel/16.0.3                        sambamba/0.6.6
+   arm-ddt/7.0                   intel/16.0.8                        samtools/1.3.1          (D)
+   arm-ddt/7.1                   intel/17.0.2                        samtools/1.6
+   arm-ddt/18.2.1         (D)    intel/17.0.5                        samtools/1.9
+   arm-map/6.0.6                 intel/17.0.7                        schrodinger/15
+   arm-map/7.0                   intel/18.0.0                        schrodinger/16
+   arm-map/7.1                   intel/18.0.2                        schrodinger/2018.3      (D)
+   arm-map/18.2.1         (D)    intel/18.0.3               (L,D)    singularity/current
+   arm-pr/6.0.6                  java/1.7.0                          snpeff/4.2
+   arm-pr/7.0                    java/1.8.0_131             (D)      spark/rdma-0.9.4
 ```
 {: .output}
 
-Let's take a closer look at the `gcc` module.
-GCC is an extremely widely used C/C++/Fortran compiler.
-Tons of software is dependent on the GCC version, 
-and might not compile or run if the wrong version is loaded.
-In this case, there are two different versions: `gcc/4.8.5` and `gcc/5.4.0`.
-How do we load each copy and which copy is the default?
-
-In this case, `gcc/5.4.0` has a `(D)` next to it.
-This indicates that it is the default - 
-if we type `module load gcc`, this is the copy that will be loaded.
-
-```
-module load gcc
-gcc --version
-```
-{: .bash}
-```
-Lmod is automatically replacing "intel/2016.4" with "gcc/5.4.0".
-
-
-Due to MODULEPATH changes, the following have been reloaded:
-  1) openmpi/2.1.1
-
-gcc (GCC) 5.4.0
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-{: .output}
-
-Note that three things happened:
-the default copy of GCC was loaded (version 5.4.0), 
-the Intel compilers (which conflict with GCC) were unloaded,
-and software that is dependent on compiler (OpenMPI) was reloaded.
-The `module` system turned what might be a super-complex operation into a single command.
-
-So how do we load the non-default copy of a software package?
-In this case, the only change we need to make is be more specific about the module we are loading.
-There are two GCC modules: `gcc/5.4.0` and `gcc/4.8.5`.
-To load a non-default module, the only change we need to make to our `module load` command
-is to leave in the version number after the `/`.
-
-```
-module load gcc/4.8.5
-gcc --version
-```
-{: .bash}
-```
-Inactive Modules:
-  1) openmpi
-
-The following have been reloaded with a version change:
-  1) gcc/5.4.0 => gcc/4.8.5
-
-gcc (GCC) 4.8.5
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-{: .output}
-
-We now have successfully switched from GCC 5.4.0 to GCC 4.8.5.
-It is also important to note that there was no compatible OpenMPI module available for GCC 4.8.5.
-Because of this, the `module` program has "inactivated" the module.
-All this means for us is that if we re-load GCC 5.4.0, 
-`module` will remember OpenMPI used to be loaded and load that module as well.
-
-```
-module load gcc/5.4.0
-```
-{: .bash}
-```
-Activating Modules:
-  1) openmpi/2.1.1
-
-The following have been reloaded with a version change:
-  1) gcc/4.8.5 => gcc/5.4.0
-```
-{: .output}
+Software with multiple versions will be marked with a (D). The best way to be sure you understand how certain software is
+used on our clusters is to look at the software page on our website. [https://www.osc.edu/resources/available_software](https://www.osc.edu/resources/available_software)
 
 > ## Using software modules in scripts
 >
 > Create a job that is able to run `python3 --version`.
 > Remember, no software is loaded by default!
 > Running a job is just like logging on to the system 
-> (you should not assume a module loaded on the login node is loaded on a worker node).
+> (you should not assume a module loaded on the login node is loaded on a compute node).
 {: .challenge}
 
 > ## Loading a module by default
