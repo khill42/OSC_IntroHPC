@@ -14,7 +14,7 @@ objectives:
 - "Be able to interact with your files."
 keypoints:
 - "`scp` (The Secure Copy Program) is a standard way to securely transfer data to remote HPC systems."
-- "File ownership is an important component of a shared computing space and can be controlled with `chgrp` and `chown`."
+- "File ownership is an important component of a shared computing space and can be controlled with `chmod`."
 - "Scripts are *mostly* just lists of commands from the command line in the order they are to be performed."
 ---
 
@@ -35,10 +35,33 @@ Additionally, the use of 'tab completion' can help us ensure we are typing comma
 > **Wildcards** -- the asterisk symbol "*" can be used to represent a string of characters of non-zero length; most commonly you can integrate an '\*' into other commands to create search patterns.  For example, `ls *zip` will display all files and directories that end with "zip", regardless of the leading characters.   
 {: .callout}
 
+![Basic Filesystem](../files/filesystem.png)
+
 ## Basic UNIX Syntax
 
 Here use 'cd' and 'mkdir' as explainers to demonstrate the use of up/down, tab and escape
-Explain what 'zero exit' status is
+
+~~~
+$ mkdir hpc_carpentry
+
+$ cd hpc_carpentry
+
+$ mkdir test_jobs
+
+$ cd test_jobs
+
+$ mkdir data
+
+$ pwd
+
+$ cd ..
+
+$ pwd
+
+$ cd hpc_carpentry/test_jobs/data
+~~~
+{: .bash}
+
 
 Type the command `whoami`,
 then press the ENTER key to send the command to the shell.
@@ -47,7 +70,7 @@ i.e.,
 it shows us who the shell thinks we are:
 
 ~~~
-$ cd
+$ whomai
 ~~~
 {: .bash}
 
@@ -262,7 +285,7 @@ three commands, but we can actually string together the list of directories
 to move to `data` in one step:
 
 ~~~
-[remote]$ cd Desktop/data-shell/data
+[remote]$ cd hpc_carpentry/test_jobs/data
 ~~~
 {: .bash}
 
