@@ -119,3 +119,6 @@ This is an important point to remember:
 files saved on one node (computer) are available everywhere on the cluster!
 
 ![Structure of Cluster](../files/cluster_login.jpg)
+
+This graphic is a general view of the parts of a cluster. For specific details on the clusters at OSC, check out our 
+Cluster Computing webpage: [https://www.osc.edu/services/cluster_computing](https://www.osc.edu/services/cluster_computing)
