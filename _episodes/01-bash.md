@@ -95,7 +95,11 @@ The rest of the exercises we'll work on today will be with OnDemand.
 
 Once you are logged in, you'll see the dashboard. At the top are the pulldown menus we'll use to access the clusters.
 
+![OnDemand Dashboard](../files/Pulldown.png)
+
 On the rest
+
+![Message of the Day](../files/MOTD.png)
 
 We'll open a shell tab under 'Clusters', select 'Owens shell access'.
 
