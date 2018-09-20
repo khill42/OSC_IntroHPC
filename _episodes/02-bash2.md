@@ -442,7 +442,7 @@ The most basic command line tool for moving files around is secure copy or `scp`
 `scp` behaves similarily to `ssh` but with one additional input, the name of the file to be copied.  If we were in the shell on our local computer, the file we wanted to move was in our current directory, named "globus.tgz", and Nelle wanted to move it to her home directory on cedar.computecanada.ca then the command would be
 	
 ~~~
-[local]$ scp fileToMove nelle@cedar.computecanada.ca:
+[local]$ scp fileToMove nelle@owens.osc.edu:
 ~~~
 {: .bash}
 	
