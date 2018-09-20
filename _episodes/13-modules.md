@@ -277,71 +277,65 @@ the general process is the same:
 download the software, read the installation instructions (important!),
 install dependencies, compile, then start using our software.
 
-As an example we will install the bioinformatics toolkit `seqtk`.
-We'll first need to obtain the source code from Github using `git`.
+### Getting Started
+Before installing your software, you should first prepare a place for it to live. We recommend the following directory structure, which you should create in the top-level of your home directory:
 
 ```
-git clone https://github.com/lh3/seqtk.git
+    local
+    |-- src
+    |-- share
+        `-- lmodfiles
 ```
 {: .bash}
-```
-Cloning into 'seqtk'...
-remote: Counting objects: 316, done.
-remote: Total 316 (delta 0), reused 0 (delta 0), pack-reused 316
-Receiving objects: 100% (316/316), 141.52 KiB | 0 bytes/s, done.
-Resolving deltas: 100% (181/181), done.
-```
-{: .output}
 
-Now, using the instructions in the README.md file, 
-all we need to do to complete the install is to `cd` 
-into the seqtk folder and run the command `make`.
+This structure is how OSC organizes the software we provide. Each directory serves a specific purpose:
+
+local - Gathers all the files related to your local installs into one directory, rather than cluttering your home directory. Applications will be installed into this directory with the format "appname/version". This allows you to easily store multiple versions of a particular software install if necessary.
+local/src - Stores the installers -- generally source directories -- for your software. Also, stores the compressed archives ("tarballs") of your installers; useful if you want to reinstall later using different build options.
+local/share/lmodfiles - The standard place to store module files, which will allow you to dynamically add or remove locally installed applications from your environment.
+You can create this structure with one command.
+
+NOTE: Ensure $HOME is the full path of your home directory. You can identify this from the command line with the command echo $HOME.
+
+After navigating to where you want to create the directory structure, run:
 
 ```
-cd seqtk
-make
+    mkdir -p $HOME/local/src $HOME/local/share/lmodfiles
 ```
 {: .bash}
-```
-gcc -g -Wall -O2 -Wno-unused-function seqtk.c -o seqtk -lz -lm
-seqtk.c: In function ‘stk_comp’:
-seqtk.c:399:16: warning: variable ‘lc’ set but not used [-Wunused-but-set-variable]
-    int la, lb, lc, na, nb, nc, cnt[11];
-                ^
-```
-{: .output}
 
-It's done!
-Now all we need to do to use the program is invoke it like any other program.
+
+### Installing Software
+Now that you have your directory structure created, you can install your software. For demonstration purposes, we will install a local copy of Git.
+
+First, we need to get the source code onto the HPC filesystem. The easiest thing to do is find a download link, copy it, and use the wget tool to download it on the HPC. We'll download this into $HOME/local/src:
 
 ```
-./seqtk
+    cd $HOME/local/src
+    wget https://github.com/git/git/archive/v2.9.0.tar.gz
 ```
 {: .bash}
-```
-Usage:   seqtk <command> <arguments>
-Version: 1.2-r101-dirty
 
-Command: seq       common transformation of FASTA/Q
-         comp      get the nucleotide composition of FASTA/Q
-         sample    subsample sequences
-         subseq    extract subsequences from FASTA/Q
-         fqchk     fastq QC (base/quality summary)
-         mergepe   interleave two PE FASTA/Q files
-         trimfq    trim FASTQ using the Phred algorithm
 
-         hety      regional heterozygosity
-         gc        identify high- or low-GC regions
-         mutfa     point mutate FASTA at specified positions
-         mergefa   merge two FASTA/Q files
-         famask    apply a X-coded FASTA to a source FASTA
-         dropse    drop unpaired from interleaved PE FASTA/Q
-         rename    rename sequence names
-         randbase  choose a random base from hets
-         cutN      cut sequence at long N
-         listhet   extract the position of each het
+Now extract the tar file:
 
 ```
-{: .output}
+    tar zxvf v2.9.0.tar.gz
+```
+{: .bash}
+
+Next, we'll go into the source directory and build the program. Consult your application's documentation to determine how to install into `$HOME/local/"software_name"/"version"`. Replace "software_name" with the software's name and "version" with the version you are installing, as demonstrated below. In this case, we'll use the configure tool's --prefix option to specify the install location.
+
+You'll also want to specify a few variables to help make your application more compatible with our systems. We recommend specifying that you wish to use the Intel compilers and that you want to link the Intel libraries statically. This will prevent you from having to have the Intel module loaded in order to use your program. To accomplish this, add `CC=icc CFLAGS=-static-intel` to the end of your invocation of configure. If your application does not use configure, you can generally still set these variables somewhere in its Makefile or build script.
+
+Then, we can build Git using the following commands:
+
+```
+    cd git-2.9.0
+    autoconf # this creates the configure file
+    ./configure --prefix=$HOME/local/git/2.9.0 CC=icc CFLAGS=-static-intel
+    make && make install
+```
+{: .bash}
 
 We've successfully installed our first piece of software!
