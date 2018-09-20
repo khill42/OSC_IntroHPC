@@ -315,7 +315,7 @@ the filesystem (including from inside `data`).  To find the absolute path
 we're looking for, we can use `pwd` and then extract the piece we need
 to move to `test_jobs`.  
 
-Run `pwd` and `ls -F` to ensure that we're in the directory we expect.  
+Run `pwd` and `ls` to ensure that we're in the directory we expect.  
 
 ### Nelle's Pipeline: Organizing Files
 
@@ -444,6 +444,14 @@ a directory called `revised-revised-results-3`.)
 
 ### touch, cp, mv, rm, rmdir, scp
 
+**touch** — The touch command is used to create a file. It can be anything, from an empty txt file to an empty zip file. For example, “touch new.txt”
+
+**cp** — Use the cp command to copy files through the command line. It takes two arguments: The first is the location of the file to be copied, the second is where to copy.
+
+**mv** — Use the mv command to move files through the command line. We can also use the mv command to rename a file. For example, if we want to rename the file “text” to “new”, we can use “mv text new”. It takes the two arguments, just like the cp command.
+
+
+
 ## Moving files to and from the remote system from and to your local computer
 
 It is often necessary to move data from your local computer to the remote system and vice versa.  There are many ways to do this and we will look at two here: `scp` and `sftp`.
@@ -451,7 +459,7 @@ It is often necessary to move data from your local computer to the remote system
 ### `scp` from your local computer to the remote system
 The most basic command line tool for moving files around is secure copy or `scp`.
 
-`scp` behaves similarily to `ssh` but with one additional input, the name of the file to be copied.  If we were in the shell on our local computer, the file we wanted to move was in our current directory, named "globus.tgz", and Nelle wanted to move it to her home directory on cedar.computecanada.ca then the command would be
+`scp` behaves similarily to `ssh` but with one additional input, the name of the file to be copied.  If we were in the shell on our local computer, the file we wanted to move was in our current directory, named "globus.tgz", and Nelle wanted to move it to her home directory on OSC then the command would be
 	
 ~~~
 [local]$ scp fileToMove nelle@owens.osc.edu:
