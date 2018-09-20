@@ -295,9 +295,11 @@ Before installing your software, you should first prepare a place for it to live
 
 This structure is how OSC organizes the software we provide. Each directory serves a specific purpose:
 
-local - Gathers all the files related to your local installs into one directory, rather than cluttering your home directory. Applications will be installed into this directory with the format "appname/version". This allows you to easily store multiple versions of a particular software install if necessary.
-local/src - Stores the installers -- generally source directories -- for your software. Also, stores the compressed archives ("tarballs") of your installers; useful if you want to reinstall later using different build options.
-local/share/lmodfiles - The standard place to store module files, which will allow you to dynamically add or remove locally installed applications from your environment.
+| --- | --- |
+|local  |Gathers all the files related to your local installs into one directory, rather than cluttering your home directory. Applications will be installed into this directory with the format "appname/version". This allows you to easily store multiple versions of a particular software install if necessary.|
+|local/src | Stores the installers -- generally source directories -- for your software. Also, stores the compressed archives ("tarballs") of your installers; useful if you want to reinstall later using different build options.|
+|local/share/lmodfiles  |The standard place to store module files, which will allow you to dynamically add or remove locally installed applications from your environment.|
+
 You can create this structure with one command.
 
 NOTE: Ensure $HOME is the full path of your home directory. You can identify this from the command line with the command echo $HOME.
