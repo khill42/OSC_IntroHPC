@@ -1,7 +1,7 @@
 ---
 title: "Using a cluster: Introduction"
 teaching: 15
-exercises: 10
+exercises: 5
 questions:
 - "What is a cluster?"
 - "How does a cluster work?"
