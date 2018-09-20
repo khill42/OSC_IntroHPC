@@ -1,7 +1,7 @@
 ---
 title: "Using a cluster: Using resources effectively"
 teaching: 15
-exercises: 30
+exercises: 15
 questions:
 - "How do we monitor our jobs?"
 - "How can I get my jobs scheduled more easily?" 
