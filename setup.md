@@ -12,7 +12,7 @@ a temporary workshop account.
 
 ## Example Files
 
-You will find the example [files used in this tutorial here.](https://github.com/amandamiotto/INTRO_HPC/raw/gh-pages/files/hpcCarpentry.zip)
+You will find the example [files used in this tutorial here.](https://github.com/khill42/OSC_IntroHPC/raw/gh-pages/files/hpcCarpentry.zip)
 
 
 
