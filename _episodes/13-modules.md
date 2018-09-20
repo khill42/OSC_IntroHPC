@@ -347,3 +347,5 @@ Then, we can build Git using the following commands:
 {: .bash}
 
 We've successfully installed our first piece of software!
+
+See the HOWTO for details on creating your own modules for locally installed software.
