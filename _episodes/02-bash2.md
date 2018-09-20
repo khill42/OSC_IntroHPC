@@ -200,7 +200,7 @@ information on how to use the commands or programs.
 > to refer to the input term(s) given to a command.
 > Consider the example below:
 > ```
-> [remote]$ ls -lh /plots
+> [remote]$ ls -lh /Documents
 > ```
 > {: .bash}
 > `ls` is the command, `-lh` are the flags (also called options),
