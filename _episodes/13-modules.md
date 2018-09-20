@@ -268,6 +268,11 @@ used on our clusters is to look at the software page on our website. [https://ww
 
 ## Installing software of our own
 
+>The following tutorial is from our HOWTO guide on our website. We have many more useful guides there, take 
+>a look at [https://www.osc.edu/resources/getting_started/howto](https://www.osc.edu/resources/getting_started/howto)
+>
+{: .callout}
+
 Most HPC clusters have a pretty large set of preinstalled software.
 Nonetheless, it's unlikely that all of the software we'll need will be available.
 Sooner or later, we'll need to install some software of our own. 
