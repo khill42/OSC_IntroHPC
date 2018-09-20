@@ -35,8 +35,6 @@ Additionally, the use of 'tab completion' can help us ensure we are typing comma
 > **Wildcards** -- the asterisk symbol "*" can be used to represent a string of characters of non-zero length; most commonly you can integrate an '\*' into other commands to create search patterns.  For example, `ls *zip` will display all files and directories that end with "zip", regardless of the leading characters.   
 {: .callout}
 
-Insert directory image here and annotate to explain 'dir' shortcuts.
-
 ## Basic UNIX Syntax
 
 Here use 'cd' and 'mkdir' as explainers to demonstrate the use of up/down, tab and escape
