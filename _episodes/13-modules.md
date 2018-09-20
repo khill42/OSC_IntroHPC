@@ -295,6 +295,7 @@ Before installing your software, you should first prepare a place for it to live
 
 This structure is how OSC organizes the software we provide. Each directory serves a specific purpose:
 
+| directory | description |
 | --- | --- |
 |local  |Gathers all the files related to your local installs into one directory, rather than cluttering your home directory. Applications will be installed into this directory with the format "appname/version". This allows you to easily store multiple versions of a particular software install if necessary.|
 |local/src | Stores the installers -- generally source directories -- for your software. Also, stores the compressed archives ("tarballs") of your installers; useful if you want to reinstall later using different build options.|
