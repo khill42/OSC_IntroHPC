@@ -30,7 +30,7 @@ Additionally, the use of 'tab completion' can help us ensure we are typing comma
 > **New Directory** -- between two words, a forwardslash "/" represents a new directory, e.g. in this situation "/homeN/XX/" the directory "XX" is contained within the directory "homeN"  
 > **Up & Down Arrows** -- use these keys to navigate through your command history  
 > **Tab Key** -- performs *autocompletion* of commands, directory paths & file paths  
-> **Escape Character** -- a single backslash "\" is used to 'escape' special characters, such as spaces, ampersands & apostrophes  
+> **Escape Character** -- a single backslash "\\" is used to 'escape' special characters, such as spaces, ampersands & apostrophes  
 > **Environment Variables** -- when you open your shell, a number of pre-saved variables, so called 'environment' variables are set for you. You can view them all by executing the command `printenv`, and access individual variables by prefacing their name with a "$", e.g. $USER or $HOSTNAME.  
 > **Wildcards** -- the asterisk symbol "*" can be used to represent a string of characters of non-zero length; most commonly you can integrate an '\*' into other commands to create search patterns.  For example, `ls *zip` will display all files and directories that end with "zip", regardless of the leading characters.   
 {: .callout}
@@ -58,7 +58,11 @@ $ cd ..
 
 $ pwd
 
-$ cd hpc_carpentry/test_jobs/data
+$ cd hpc_carpentry
+
+$ cd test_jobs
+
+$ cd data
 ~~~
 {: .bash}
 
@@ -75,7 +79,7 @@ $ whomai
 {: .bash}
 
 ~~~
-jcXXYYYY
+w59XXYYYY
 ~~~
 {: .output}
 
@@ -289,7 +293,7 @@ to move to `data` in one step:
 ~~~
 {: .bash}
 
-Check that we've moved to the right place by running `pwd` and `ls -F`  
+Check that we've moved to the right place by running `pwd` and `ls`  
 
 If we want to move up one level from the data directory, we could use `cd ..`.  But
 there is another way to move to any directory, regardless of your
@@ -306,25 +310,10 @@ leading slash.  The leading `/` tells the computer to follow the path from
 the root of the file system, so it always refers to exactly one directory,
 no matter where we are when we run the command.
 
-This allows us to move to our `data-shell` directory from anywhere on
+This allows us to move to our `test_jobs` directory from anywhere on
 the filesystem (including from inside `data`).  To find the absolute path
 we're looking for, we can use `pwd` and then extract the piece we need
-to move to `data-shell`.  
-
-~~~
-[remote]$ pwd
-~~~
-{: .bash}
-
-~~~
-/Users/nelle/Desktop/data-shell/data
-~~~
-{: .output}
-
-~~~
-[remote]$ cd /Users/nelle/Desktop/data-shell
-~~~
-{: .bash}
+to move to `test_jobs`.  
 
 Run `pwd` and `ls -F` to ensure that we're in the directory we expect.  
 
