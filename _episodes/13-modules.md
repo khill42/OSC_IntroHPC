@@ -8,9 +8,9 @@ objectives:
 - "Understand how to load and use a software package."
 keypoints:
 - "Load software with `module load softwareName`"
-- "Unload software with `module purge`"
 - "The module system handles software versioning and package conflicts for you automatically."
 - "You can edit your `.bashrc` file to automatically load a software package."
+- "When using software on any HPC system, check the software documents for details on how to use it effectively."
 ---
 
 On a high-performance computing system, no software is loaded by default.
