@@ -47,11 +47,6 @@ Here are a couple of use cases where high-performance computing becomes extremel
 Chances are, you've run into one of these situations before.
 Fortunately, high-performance computing installations exist to solve these types of problems.
 
-With all of this in mind, let's connect to a cluster (if you haven't done so already!). 
-For these examples, we will connect to Graham - a high-performance cluster located at the University of Waterloo.
-Although it's unlikely that every system will be exactly like Graham, 
-it's a very good example of what you can expect from a supercomputing installation.
-To connect to our example computer, we will use SSH. 
 
 ## Logging onto the cluster
 
@@ -81,9 +76,9 @@ A login node serves as a gateway to the cluster and serves as a single point of 
 As a gateway, it is well suited for uploading and downloading files, setting up software, and running quick tests.
 It should never be used for doing actual work.
 
-The real work on a cluster gets done by the "worker" nodes.
-Worker nodes come in many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs doing. 
-All interaction with the worker nodes is handled by a specialized piece of software called a scheduler. We use the Moab scheduler.
+The real work on a cluster gets done by the compute nodes.
+Compute nodes come in many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs doing. 
+All interaction with the compute nodes is handled by a specialized piece of software called a scheduler. We use the Moab scheduler.
 We can view all of the worker nodes with the `pbsnodes -a` command. But this would be overwhelming since we have over 800 compute nodes, so we'll abbreviate it instead.
 
 ```
