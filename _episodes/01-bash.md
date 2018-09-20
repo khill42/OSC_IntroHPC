@@ -97,7 +97,8 @@ Once you are logged in, you'll see the dashboard. At the top are the pulldown me
 
 ![OnDemand Dashboard](../files/Pulldown.png)
 
-On the rest
+On the rest of the page, the Message of the Day (MOTD) is displayed. Always review this information because we post it 
+so users know key changes to clusters and upcoming outages.
 
 ![Message of the Day](../files/MOTD.png)
 
