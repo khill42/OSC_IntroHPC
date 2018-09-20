@@ -73,12 +73,6 @@ If you entered your password appropriately, congratulations, you're now connecte
 
 <span style="color:white">blankline</span>
 
-> ## The Command Prompt
-> The command prompt is the symbol or series of characters which precedes each shell command, and lets the user know the shell is ready to receive commands.  For example, when you initially login to the HPC you command prompt should resemble `-bash-4.1`. If your command prompt changes to `>`, the shell is expecting further input. Use the key-binding CTRL+C to escape shell commands, returning your prompt from `>` to `-bash-4.1`.  
->
-> Let's all change our command prompts to something more useful, input the command `PS1='\W\n $ '`. Our command prompt is now our current working directory followed by a \"$\".
-{: .callout}
-
 ## Connecting with our OnDemand web portal
 
 It is important to know how to login with SSH since it is the traditional method and you may have to use it occasionally. 
@@ -97,6 +91,18 @@ You'll see two different login options. Right now, we will just use our HPC user
 The rest of the exercises we'll work on today will be with OnDemand.
 
 >There is an introduction to OnDemand on OSC's website [osc.edu/ondemand](https://www.osc.edu/resources/online_portals/ondemand)
+{: .callout}
+
+Once you are logged in, you'll see the dashboard. At the top are the pulldown menus we'll use to access the clusters.
+
+On the rest
+
+We'll open a shell tab under 'Clusters', select 'Owens shell access'.
+
+> ## The Command Prompt
+> The command prompt is the symbol or series of characters which precedes each shell command, and lets the user know the shell is ready to receive commands.  For example, when you initially login to the HPC you command prompt should resemble `-bash-4.1`. If your command prompt changes to `>`, the shell is expecting further input. Use the key-binding CTRL+C to escape shell commands, returning your prompt from `>` to `-bash-4.1`.  
+>
+> Let's all change our command prompts to something more useful, input the command `PS1='\W\n $ '`. Our command prompt is now our current working directory followed by a \"$\".
 {: .callout}
 
 
