@@ -138,7 +138,7 @@ Schedulers like PBS also have a special comment used to denote special
 scheduler-specific options.
 Though these comments differ from scheduler to scheduler, 
 PBS's special comment is `#PBS`.
-Anything following the `##PBS` comment is interpreted as an instruction to the scheduler.
+Anything following the `#PBS` comment is interpreted as an instruction to the scheduler.
 
 In our example, we have set the following parameters:
  
