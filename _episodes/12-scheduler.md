@@ -32,7 +32,7 @@ The exact syntax might change, but the concepts remain the same.
 The most basic use of the scheduler is to run a command non-interactively.
 This is also referred to as batch job submission.
 In this case, we need to make a script that incorporates some arguments for PBS such as resources needed and modules to load. We will use the script below and name it test.pbs. Please copy the script text below and put it into a file using the
-file explorer on OnDemand. Remember to update the project code with your own or the workshop project.
+file explorer on OnDemand. Create this file in your `test_jobs directory`. Remember to update the project code with your own or the workshop project.
 
 ```
 test.pbs
