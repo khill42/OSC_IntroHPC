@@ -39,6 +39,9 @@ Additionally, the use of 'tab completion' can help us ensure we are typing comma
 
 ## Basic UNIX Syntax
 
+cd - change directory
+mkdir - create a new directory
+
 Here use 'cd' and 'mkdir' as explainers to demonstrate the use of up/down, tab and escape
 
 ~~~
@@ -57,12 +60,19 @@ $ pwd
 $ cd ..
 
 $ pwd
+~~~
+{: .bash}
 
+For the next set of commands, start typing the directory name, then use the Tab key to autofill
+
+~~~
 $ cd hpc_carpentry
 
 $ cd test_jobs
 
 $ cd data
+
+$ pwd
 ~~~
 {: .bash}
 
@@ -74,12 +84,12 @@ i.e.,
 it shows us who the shell thinks we are:
 
 ~~~
-$ whomai
+$ whoami
 ~~~
 {: .bash}
 
 ~~~
-w59XXYYYY
+kcahill
 ~~~
 {: .output}
 
