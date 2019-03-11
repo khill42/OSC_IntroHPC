@@ -515,6 +515,7 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 >
 > * You want to go get the genome through the "Download DNA Sequence" link
 > * We are interested in the `Drosophila_melanogaster.BDGP6.dna.toplevel.fa.gz` file.
+> * Once you find the file, copy link location
 {: .challenge}
 
 > ## Working with compressed files, using unzip and gunzip
