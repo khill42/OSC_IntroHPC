@@ -51,7 +51,7 @@ Fortunately, high-performance computing installations exist to solve these types
 ## Logging onto the cluster
 
 You should be logged into OnDemand, we will open a terminal window from the Dashboard. Use the Clusters pulldown menu
-and choose "Owens Shell Access".
+and choose "Pitzer Shell Access".
 
 ## Where are we? 
 
@@ -66,7 +66,7 @@ hostname
 ```
 {: .bash}
 ```
-owens-login04.hpc.osc.edu
+pitzer-login04.hpc.osc.edu
 ```
 {: .output}
 
@@ -74,7 +74,7 @@ Clusters have different types of machines customized for different types of task
 In this case, we are on a login node.
 A login node serves as a gateway to the cluster and serves as a single point of access.
 As a gateway, it is well suited for uploading and downloading files, setting up software, and running quick tests.
-It should never be used for doing actual work.
+It should never be used for doing actual work. Login nodes only have 1GB RAM and 20 minutes CPU time.
 
 The real work on a cluster gets done by the compute nodes.
 Compute nodes come in many shapes and sizes, but generally are dedicated to doing all of the heavy lifting that needs doing. 
@@ -122,3 +122,26 @@ files saved on one node (computer) are available everywhere on the cluster!
 
 This graphic is a general view of the parts of a cluster. For specific details on the clusters at OSC, check out our 
 Cluster Computing webpage: [https://www.osc.edu/services/cluster_computing](https://www.osc.edu/services/cluster_computing)
+
+## File Systems
+
+There are four different file systems you can use on our clusters. They are optimized for different purposes so it is
+important to know the differences between them.
+
+| Filesystem | Quota | Backed up? | Purged?|
+| --- | --- | --- | --- |
+| Home ($HOME) | 500GB | Yes | No |
+| Project (/fs/project) | By request | Yes | No |
+| Scratch (/fs/scratch/) | None| No | Yes, 90 days |
+| Compute ($TMPDIR) | 1TB | No | Yes, when job completes|
+
+Home directory quota is a hard limit, so keep an eye on your usage. When you log on to the system, you'll see a daily
+quota display, like this:
+
+```
+As of 2010 Jul 15 04:02 userid usr1234 on /nfs/06 used 28GB of quota 500GB and 41374 files of quota 1000000 files
+As of 2010 Jul 16  04:02 project/group PRJ0321 on /nfs/proj01 used 27GB of quota 5000GB and 573105 files of quota 1000000 files
+
+```
+{: .output}
+
