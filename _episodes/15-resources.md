@@ -21,6 +21,26 @@ We can log on, submit different types of jobs, use preinstalled software,
 and install and use software of our own.
 What we need to do now is use the systems effectively.
 
+## How do you choose which cluster to use?
+
+At OSC, we have three clusters: Owens, Pitzer, and Ruby. Most users will not have access to Ruby so we will not cover it
+here. But what are the differences between Owens and Pitzer and how do you decide which one to use? Luckily, 
+you can switch between them pretty easily so you don't have to commit to one forever. Often it is a question of how 
+busy they are.
+
+OnDemand has a tool to show you how active the clusters are so you can decide where to submit your job. It is in the
+Clusters menu, called System Status. If you select Owens and the week long view, you'll see something like this:
+
+![Owens Node Usage Last Week](../files/Owens-queue-week.png)
+
+Compre this to Pitzer activity:
+
+![Pitzer Node Usage Last Week](../files/Pitzer-queue-week.png)
+
+Right now, Pitzer seems the better choice.
+
+For the standard compute nodes the main difference in **Owens has 28 cores per node** and _Pitzer has 40 cores per node_.
+
 ## Estimating required resources using the scheduler
 
 Although we covered requesting resources from the scheduler earlier,
