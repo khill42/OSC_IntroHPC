@@ -6,14 +6,12 @@ permalink: /setup/
 
 ## HPC Access
 
-You will need to have an HPC user account for the workshop.  You can either use your own account or we will provide
-a temporary workshop account.
+You will need to have an HPC user account for the workshop.  Create an account at my.osc.edu and get instructions on joining
+a project from the workshop moderator.
 
+## Workshop Files
 
-## Example Files
-
-You will find the example [files used in this tutorial here.](https://github.com/khill42/OSC_IntroHPC/raw/gh-pages/files/hpcCarpentry.zip)
-
+You can access the presentation slides here: [HandsOn-031219.pdf](https://github.com/khill42/OSC_IntroHPC/blob/gh-pages/files/HandsOn-031219.pdf)
 
 
 
