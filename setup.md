@@ -9,11 +9,6 @@ permalink: /setup/
 You will need to have an HPC user account for the workshop.  Create an account at my.osc.edu and get instructions on joining
 a project from the workshop moderator.
 
-## Workshop Files
-
-You can access the presentation slides here: [HandsOn-031219.pdf](https://github.com/khill42/OSC_IntroHPC/blob/gh-pages/files/HandsOn-031219.pdf)
-
-
 
 ## Connecting to cluster
 
