@@ -31,83 +31,10 @@ The exact syntax might change, but the concepts remain the same.
 
 The most basic use of the scheduler is to run a command non-interactively.
 This is also referred to as batch job submission.
-In this case, we need to make a script that incorporates some arguments for PBS such as resources needed and modules to load. We will use the script below and name it test.pbs. Please copy the script text below and put it into a file using the
-file explorer on OnDemand. Create this file in your `test_jobs directory`. 
+In this case, we need to make a script that incorporates some arguments for PBS such as resources needed and modules to load. 
+
+We will use the sleep.sh job script as an example.
    * Remember to update the project code line: `#PBS -A PZSXXX` with your own project number.
-
-```
-test.pbs
-```
-```
-#!/bin/bash
-#PBS -q debug
-#PBS -A PZSXXXX
-  #Give the job a name 
-#PBS -N test_script
-#PBS -l walltime=00:03:00
-#PBS -l nodes=1:ppn=2
-
-echo 'This script is running on:'
-hostname
-echo 'The date is :'
-date
-sleep 120
-```
-We will talk about the parameters set above and their defaults later in this lesson.
-
-As this is just a bash script, you can run it as any bash script on the head node. Please note- its very very important not to run any large or resource heavy script on the head node, as every user relies on this head node.
-
-To test a small pbs script, run it as:
-```
-~> ./test.pbs
-This script is running on:
-owens-login04.hpc.osc.edu
-The date is :
-Tue Sep 18 14:21:02 EDT 2018
-```
-This script will take 2 minutes to finish due to the `sleep 120` command.
-
-If you get a Permissions denied error, you will need to give your script executable permissions as per the last lesson.
-
-```
-~> chmod +x test.pbs
-```
-
-If you completed the previous challenge successfully, 
-you probably realize that there is a distinction between 
-running the job through the scheduler and just "running it".
-To submit this job to the scheduler, we use the `qsub` command.
-
-```
-~> qsub test.pbs
-3818006.owens-batch.ten.osc.edu
-~>
-```
-The number that first appears is your Job ID. When the job is completed, you will get two files: an Output and an Error file (even if there is no errors). They will be named {JobName}.o{JobID} and {JobName}.e{JobID} respectively.
-
-And that's all we need to do to submit a job. 
-To check on our job's status, we use the command `qstat`.
-
-```
-~> qstat -u username
-owens-batch.ten.osc.edu: 
-                                                                                  Req'd       Req'd       Elap
-Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
------------------------ ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-3818006.owens-batch.te  kcahill     debug    test_script         --      1      2       8gb  00:03:00 Q       --   
-```
-
-{: .output}
-
-We can see all the details of our job, most importantly if it is in the "R" or "RUNNING" state.
-Sometimes our jobs might need to wait in a queue ("QUEUED") or have an error.
-The best way to check our job's status is with `qstat`. It is easiest to view just your own jobs
-in the queue with the `qstat -u username`. Otherwise, you get the entire queue.
-
-Also, OnDemand allows you to view the queue for all systems (not just the one you are on in the shell) under Jobs, select
-Active Jobs. You can filter by your jobs, your group's jobs, and all jobs.
-
-## Customizing your job
 
 ### Parameters
 
@@ -217,6 +144,60 @@ You can find out more information about these parameters by viewing the manual p
 man qsub
 ```
 
+## Submitting Jobs via command line
+
+To submit this job to the scheduler, we use the `qsub` command.
+
+```
+~> qsub test.pbs
+3818006.owens-batch.ten.osc.edu
+~>
+```
+The number that first appears is your Job ID. When the job is completed, you will get two files: an Output and an Error file (even if there is no errors). They will be named {JobName}.o{JobID} and {JobName}.e{JobID} respectively.
+
+And that's all we need to do to submit a job. 
+To check on our job's status, we use the command `qstat`.
+
+```
+~> qstat -u username
+owens-batch.ten.osc.edu: 
+                                                                                  Req'd       Req'd       Elap
+Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
+----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
+3818006.owens-batch.te  kcahill     debug    test_script         --      1      2       8gb  00:03:00 Q       --   
+```
+
+{: .output}
+
+We can see all the details of our job, most importantly if it is in the "R" or "RUNNING" state.
+Sometimes our jobs might need to wait in a queue ("QUEUED") or have an error.
+The best way to check our job's status is with `qstat`. It is easiest to view just your own jobs
+in the queue with the `qstat -u username`. Otherwise, you get the entire queue.
+
+## Submit Jobs with job composer on OnDemand
+
+OnDemand also has a tool for job creation and submission to the batch system. The same information as above applies since
+it still uses the same underlying queue system. In the Job Composer, you can create a new location in your home directory
+for a new job, create or transfer a job script and input files, edit everything, and submit your job all from this screen.
+
+We will run this job in the Job Composer by creating a new job from _specified path_.
+
+
+
+You'll see the Job Options page, like this:
+
+
+
+Fill it in as shown. You need to fill in your own path and then select Save.
+
+
+To run the job, select green 'play' button.
+
+If job successfully submitted, a green bar will appear on the top of the page.
+
+Also, OnDemand allows you to view the queue for all systems (not just the one you are on in the shell) under Jobs, select
+Active Jobs. You can filter by your jobs, your group's jobs, and all jobs.
+
 
 ## Queues
 
@@ -224,25 +205,6 @@ There are usually a number of available queues to use on your HPC. Remember: Eac
 are looking only at the queues on Owens. The other clusters have similar queues but they are not the same. 
 To see what queues are available, you can use the command `qstat -Q`. You do not have to specify a queue for most jobs. 
 Your job will be routed to the appropriate queue based on node and walltime request.
-
-```
-~> qstat -Q
-Queue              Max    Tot   Ena   Str   Que   Run   Hld   Wat   Trn   Ext T   Cpt
-----------------   ---   ----    --    --   ---   ---   ---   ---   ---   --- -   ---
-batch                0    179   yes   yes   179     0     0     0     0     0 R     0
-debug                0      2   yes   yes     0     0     0     0     0     0 E     2
-dedicated            0      0   yes   yes     0     0     0     0     0     0 E     0
-hugemem              0     12   yes   yes     0    12     0     0     0     0 E     0
-largeparallel        0     47   yes   yes    39     8     0     0     0     0 E     0
-longserial           0    255   yes   yes     0   255     0     0     0     0 E     0
-montecarlo           0      0   yes   yes     0     0     0     0     0     0 E     0
-newsyntax            0      0   yes   yes     0     0     0     0     0     0 E     0
-parallel             0    115   yes   yes    14    81    19     0     0     0 E     1
-parhugemem           0      3   yes   yes     2     1     0     0     0     0 E     0
-serial               0    900   yes   yes    55   764    56     0     0     0 E    25
-longparallel         0      0   yes   yes     0     0     0     0     0     0 E     0
-```
-{: .bash}
 
 
 > ## Submitting resource requests
@@ -301,11 +263,6 @@ Absence of any job info indicates that the job has been successfully canceled.
 > qstat -u kcahill
 >
 ```
-## Submit Jobs with job composer on OnDemand
-
-OnDemand also has a tool for job creation and submission to the batch system. The same information as above applies since
-it still uses the same underlying queue system. In the Job Composer, you can create a new location in your home directory
-for a new job, create or transfer a job script and input files, edit everything, and submit your job all from this screen.
 
 > ## Submit a job from a template in the Job Composer
 >
