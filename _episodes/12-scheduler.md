@@ -182,11 +182,11 @@ for a new job, create or transfer a job script and input files, edit everything,
 
 We will run this job in the Job Composer by creating a new job from _specified path_.
 
-
+![NewJob](../files/NewJob.png)
 
 You'll see the Job Options page, like this:
 
-
+![JobOptions](../files/JobOptions.png)
 
 Fill it in as shown. You need to fill in your own path and then select Save.
 
