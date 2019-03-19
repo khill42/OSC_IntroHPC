@@ -4,6 +4,10 @@ title: Setup
 permalink: /setup/
 ---
 
+## Files for Workshop
+
+[Click here](../data/osc_intro_hpc.zip) to download files needed for this workshop.
+
 ## HPC Access
 
 You will need to have an HPC user account for the workshop.  Create an account at my.osc.edu and get instructions on joining
