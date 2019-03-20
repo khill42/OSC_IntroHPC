@@ -185,11 +185,15 @@ cluster by dragging and dropping or using the upload and download buttons.
 > ## Transfer files to the cluster
 > We want to put the job script files on your home directory using the OnDemand file browser. You can get these files in the 
 > setup page of this workshop. Make sure to unzip them, there should be two files `sleep.sh` and `bowtie.sh`.
+> 
 > Open your Home Directory in the OnDemand file browser. 
-> Make a new directory called `sleep` and another called `genome`.
-> Put the sleep.sh file in the sleep directory and the bowtie.sh file in the genome directory.
 >
-> *NB: Always name directories and file with no spaces! Linux will not interpret this as one object.*
+> Make a new directory called `sleep` and another called `genome`.
+>
+> Put the `sleep.sh` file in the `sleep` directory and the `bowtie.sh` file in the `genome` directory. You can do 
+> this with the upload button or just drag and drop the files into the browser.
+>
+> *NB: Always name directories and files with no spaces! Otherwise, Linux may not interpret this as one object.*
 {: .challenge}
 
 
