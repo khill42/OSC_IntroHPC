@@ -182,6 +182,16 @@ and transfer files easily. You can also navigate your filesystem by using your m
 at the top of the window. The file transfer tool is especially easy to use for transfering files from your computer to the 
 cluster by dragging and dropping or using the upload and download buttons.
 
+> ## Transfer files to the cluster
+> We want to put the job script files on your home directory using the OnDemand file browser. You can get these files in the 
+> setup page of this workshop. Make sure to unzip them, there should be two files `sleep.sh` and `bowtie.sh`.
+> Open your Home Directory in the OnDemand file browser. 
+> Make a new directory called `sleep` and another called `genome`.
+> Put the sleep.sh file in the sleep directory and the bowtie.sh file in the genome directory.
+>
+> *NB: Always name directories and file with no spaces! Linux will not interpret this as one object.*
+{: .challenge}
+
 
 ## Grabbing files from the internet
 
