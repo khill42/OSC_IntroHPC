@@ -160,7 +160,7 @@ specific, based on your job.
 
 A note about memory: Memory (RAM) is allocated based on number of processors requested per node. For example, if you
 request 14 ppn on Owens, that is half the available processors so your job will receive half the available memory (~64GB).
-This applies to Oakley, Owens, and Pitzer. On Ruby, you cannot request less than a whole node, so there is no need to 
+This applies to Owens and Pitzer. On Ruby, you cannot request less than a whole node, so there is no need to 
 request memory at all.
 
 ## Playing nice in the sandbox
