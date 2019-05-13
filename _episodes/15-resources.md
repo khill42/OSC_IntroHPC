@@ -62,7 +62,7 @@ This value is typically two to three times what you think your job will need.
 > from earlier.
 > 
 > ```
-> bowtie2-build Drosophila_melanogaster.BDGP6.dna.toplevel.fa dmel-index
+> bowtie2-build Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa dmel-index
 > ```
 > {: .bash}
 > 
@@ -140,7 +140,7 @@ This line ensures we are in the correct starting directory, where the input file
 are not in same directory as your job script, you can specify a different location. 
 
 ```
-cp Drosophila_melanogaster.BDGP6.dna.toplevel.fa $TMPDIR
+cp Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa $TMPDIR
 ```
 {: bash}
 
@@ -148,7 +148,7 @@ Now, we can copy the input file to the compute node, known as `$TMPDIR` until th
 
 ```
 cd $TMPDIR
-bowtie2-build Drosophila_melanogaster.BDGP6.dna.toplevel.fa dros-index
+bowtie2-build Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa dros-index
 cp *.* $PBS_O_WORKDIR
 ```
 {: bash}
