@@ -9,7 +9,7 @@ objectives:
 
 keypoints:
 - "We connect to remote servers, like HPC's, using the Terminal"
-- "SSH is a secure protocl for connecting to remote servers"
+- "SSH is a secure protocol for connecting to remote servers"
 - "To connect to a server, you need it's address, an open port, and your user ID"
 - "With OnDemand, you can upload and download files, create, edit, submit, and monitor jobs, run GUI applications, and connect via SSH, all via a web broswer."
 ---
