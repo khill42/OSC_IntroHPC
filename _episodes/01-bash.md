@@ -102,11 +102,11 @@ so users know key changes to clusters and upcoming outages.
 
 ![Message of the Day](../files/MOTD.png)
 
-We'll open a shell tab under 'Clusters', select 'Owens shell access'.
 
 > ## The Command Prompt
 > The command prompt is the symbol or series of characters which precedes each shell command, and lets the user know the shell is ready to receive commands.  For example, when you initially login to the HPC your command prompt should resemble `-bash-4.1`. If your command prompt changes to `>`, the shell is expecting further input. Use the key-binding CTRL+C to escape shell commands, returning your prompt from `>` to `-bash-4.1`.  
 >
+> We'll open a shell tab under 'Clusters', select 'Owens shell access'.
 > Let's all change our command prompts to something more useful, input the command `PS1='\W\n $ '`. Our command prompt is now our current working directory followed by a \"$\".
 >
 > Make sure you can copy and paste this command into the shell tab, that will make the rest of this workshop much easier.
