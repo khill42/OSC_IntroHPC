@@ -38,9 +38,9 @@ We will use the sleep.sh job script as an example.
 
 ### Parameters
 
-Let's discuss the example PBS script.
+Let's discuss the example PBS script, sleep.sh. Go to File Explorer and edit sleep.sh
 ```
-test.pbs
+sleep.sh
 ```
 ```
 #!/bin/bash
@@ -149,7 +149,7 @@ man qsub
 To submit this job to the scheduler, we use the `qsub` command.
 
 ```
-~> qsub test.pbs
+~> qsub sleep.sh
 3818006.owens-batch.ten.osc.edu
 ~>
 ```
