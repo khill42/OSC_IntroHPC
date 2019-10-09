@@ -57,6 +57,11 @@ These are some useful HPC terms.
 | FLOPS | Floating Point Operations Per Second, Measure of processing capacity |
 | GPU | Graphical Processing Unit, separate processor from core |
 
+![Structure of Cluster](../files/cluster_login.jpg)
+
+This graphic is a general view of the parts of a cluster. For specific details on the clusters at OSC, check out our 
+Cluster Computing webpage: [https://www.osc.edu/services/cluster_computing](https://www.osc.edu/services/cluster_computing)
+
 ## Logging onto the cluster
 
 You should be logged into OnDemand, we will open a terminal window from the Dashboard. Use the Clusters pulldown menu
@@ -127,10 +132,7 @@ but these enable a number of key features like ensuring our user account and fil
 This is an important point to remember: 
 files saved on one node (computer) are available everywhere on the cluster!
 
-![Structure of Cluster](../files/cluster_login.jpg)
 
-This graphic is a general view of the parts of a cluster. For specific details on the clusters at OSC, check out our 
-Cluster Computing webpage: [https://www.osc.edu/services/cluster_computing](https://www.osc.edu/services/cluster_computing)
 
 ## File Systems
 
