@@ -6,9 +6,11 @@ questions:
 - "What is a cluster?"
 - "How does a cluster work?"
 - "How do I log on to a cluster?"
+- "How do I transfer files to the cluster?"
 objectives:
 - "Connect to a cluster."
 - "Understand the general cluster architecture."
+- "Transfer files from laptop & online repository"
 keypoints:
 - "A cluster is a set of networked machines."
 - "Clusters typically provide a login node and a set of worker nodes."
