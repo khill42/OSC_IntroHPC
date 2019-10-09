@@ -188,7 +188,7 @@ You'll see the Job Options page, like this:
 
 ![JobOptions](../files/JobOptions.png)
 
-Fill it in as shown. You need to fill in your own path and then select Save.
+Fill it in as shown. Path is `~/sleep` and then select Save.
 
 
 To run the job, select green 'play' button.
