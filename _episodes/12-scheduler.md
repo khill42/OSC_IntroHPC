@@ -263,17 +263,6 @@ Absence of any job info indicates that the job has been successfully canceled.
 > qstat -u kcahill
 >
 ```
-
-> ## Submit a job from a template in the Job Composer
->
-> Find MPI Hello World job in the templates
->
-> Edit the job script to correct the project number
->
->Submit job and view results
-{: .challenge}
-
-
 ### Interactive jobs
 
 Sometimes, you will need a lot of resource for interactive use.
@@ -287,4 +276,17 @@ qsub -I -A PZSXXX -l nodes=1:ppn=28 -l walltime=00:01:00
 {: .bash}
 
 You can also request interactive jobs on OnDemand using the Interative Apps menu
+
+
+> ## Submit a job from a template in the Job Composer
+>
+> Find MPI Hello World job in the templates
+>
+> Edit the job script to correct the project number
+>
+>Submit job and view results
+{: .challenge}
+
+
+
 
