@@ -220,6 +220,9 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 > The *Drosophila melanogaster* reference genome is located at the following website:
 > [http://metazoa.ensembl.org/Drosophila_melanogaster/Info/Index](http://metazoa.ensembl.org/Drosophila_melanogaster/Info/Index).
 > Download it to the cluster with `wget`.
+> In a terminal window, navigate to the genome directory you created above. 
+>
+> `cd genome`
 >
 > Some additional details:
 >
