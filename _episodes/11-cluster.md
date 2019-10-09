@@ -47,6 +47,15 @@ Here are a couple of use cases where high-performance computing becomes extremel
 Chances are, you've run into one of these situations before.
 Fortunately, high-performance computing installations exist to solve these types of problems.
 
+## HPC Terminology
+
+These are some useful HPC terms.
+
+| Cluster | A group of computers (nodes) connected by a high-speed network, forming a supercomputer |
+| Node | Equivalent to a high-end workstation, unit of a cluster |
+| Core | A processor (CPU), multiple cores per node |
+| FLOPS | Floating Point Operations Per Second, Measure of processing capacity |
+| GPU | Graphical Processing Unit, separate processor from core |
 
 ## Logging onto the cluster
 
