@@ -6,7 +6,7 @@ permalink: /setup/
 
 ## Files for Workshop
 
-[Click here](../data/osc_intro_hpc.zip) to download files needed for this workshop.
+Download two files needed for this workshop [sleep.sh](../data/sleep.sh) [bowtie.sh](../data/bowtie.sh)
 
 ## HPC Access
 
