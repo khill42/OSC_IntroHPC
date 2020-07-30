@@ -32,7 +32,7 @@ The exact syntax might change, but the concepts remain the same.
 >## Upcoming Changes to the Batch System
 >
 >We are changing our scheduler and resource manager from Torque and Moab to Slurm. By the end of 2020, all our systems will use Slurm. The concepts described
->here will still apply, but the commands will change. See [Slurm Quick State Guide](https://slurm.schedmd.com/quickstart.html) for more information.
+>here will still apply, but the commands will change. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more information.
 {: .callout}
 
 ## Running a batch job
@@ -290,7 +290,7 @@ You can also request interactive jobs on OnDemand using the Interative Apps menu
 >## Upcoming Changes to the Batch System
 >
 >We are changing our scheduler and resource manager from Torque and Moab to Slurm. By the end of 2020, all our systems will use Slurm. The concepts described
->here will still apply, but the commands will change. See [Slurm Quick State Guide](https://slurm.schedmd.com/quickstart.html) for more information.
+>here will still apply, but the commands will change. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more information.
 {: .callout}
 
 > ## Submit a job from a template in the Job Composer
