@@ -214,7 +214,7 @@ are looking only at the queues on Owens. The other clusters have similar queues 
 To see what queues are available, you can use the command `qstat -Q`. You do not have to specify a queue for most jobs. 
 Your job will be routed to the appropriate queue based on node and walltime request.
 
-[Owens Queue List](../files/queue_list.png)
+![Owens Queue List](../files/queue_list.png)
 
 
 > ## Submitting resource requests
