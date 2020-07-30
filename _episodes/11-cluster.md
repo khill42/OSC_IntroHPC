@@ -23,7 +23,7 @@ And more importantly, how do we use them for our work?
 
 The "cloud" is a generic term commonly used to refer to remote computing resources.
 Cloud can refer to webservers, remote storage, API endpoints, and as well as more traditional "raw compute" resources. 
-A cluster on the other hand, is a term used to describe a network of compters.
+A cluster on the other hand, is a term used to describe a network of computers.
 Machines in a cluster typically share a common purpose, 
 and are used to accomplish tasks that might otherwise be too substantial for any one machine. 
 
@@ -68,6 +68,8 @@ Cluster Computing webpage: [https://www.osc.edu/services/cluster_computing](http
 
 You should be logged into OnDemand, we will open a terminal window from the Dashboard. Use the Clusters pulldown menu
 and choose "Pitzer Shell Access".
+
+![Terminal](../files/ODterminal.png)
 
 ## Where are we? 
 
@@ -144,8 +146,8 @@ important to know the differences between them.
 | Filesystem | Quota | Backed up? | Purged?|
 | --- | --- | --- | --- |
 | Home ($HOME) | 500GB | Yes | No |
-| Project (/fs/project) | By request | Yes | No |
-| Scratch (/fs/scratch/) | None| No | Yes, 90 days |
+| Project (/fs/project or /fs/ess/) | By request | Yes | No |
+| Scratch (/fs/scratch/ or /fs/ess/scratch/) | None| No | Yes, 90 days |
 | Compute ($TMPDIR) | 1TB | No | Yes, when job completes|
 
 Home directory quota is a hard limit, so keep an eye on your usage. When you log on to the system, you'll see a daily
