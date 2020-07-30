@@ -22,10 +22,18 @@ How do we ensure that a task is run with the resources it needs?
 This job is handled by a special piece of software called the scheduler.
 On an HPC system, the scheduler manages which jobs run where and when.
 
+![Why do supercomputers use queueing?](../files/queueing_infog.png)
+
 The scheduler used in this lesson is PBS Pro (PBS for short).
 Although PBS is not used everywhere, 
 running jobs is quite similar regardless of what software is being used.
 The exact syntax might change, but the concepts remain the same.
+
+>## Upcoming Changes to the Batch System
+>
+>We are changing our scheduler and resource manager from Torque and Moab to Slurm. By the end of 2020, all our systems will use Slurm. The concepts described
+>here will still apply, but the commands will change. See [Slurm Quick State Guide](https://slurm.schedmd.com/quickstart.html) for more information.
+{: .callout}
 
 ## Running a batch job
 
@@ -131,8 +139,8 @@ Compute parameters, represented by `nodes=1:ppn=2` can be considered individuall
 |---|---|---|
 | 2|  16|  32 Processor job, using 2 nodes and 16 processors per node| 
 | 4|  8|  32 Processor job, using 4 nodes and 8 processors per node| 
-| 16|  1|  16 Processor job, using 16 nodes and 1 processor per node| 
-| 8 | 16 | 128 Processor job, using 8 nodes and 16 processors per node|
+| 8|  28|  244 Processor job, using 8 nodes and 28 processor per node| 
+| 1 | 40 | 40 Processor job, using 1 nodes and 40 processors per node|
 
 
 
@@ -206,6 +214,8 @@ are looking only at the queues on Owens. The other clusters have similar queues 
 To see what queues are available, you can use the command `qstat -Q`. You do not have to specify a queue for most jobs. 
 Your job will be routed to the appropriate queue based on node and walltime request.
 
+[Owens Queue List](../files/queue_list.png)
+
 
 > ## Submitting resource requests
 >
@@ -277,6 +287,11 @@ qsub -I -A PZSXXX -l nodes=1:ppn=28 -l walltime=00:01:00
 
 You can also request interactive jobs on OnDemand using the Interative Apps menu
 
+>## Upcoming Changes to the Batch System
+>
+>We are changing our scheduler and resource manager from Torque and Moab to Slurm. By the end of 2020, all our systems will use Slurm. The concepts described
+>here will still apply, but the commands will change. See [Slurm Quick State Guide](https://slurm.schedmd.com/quickstart.html) for more information.
+{: .callout}
 
 > ## Submit a job from a template in the Job Composer
 >
