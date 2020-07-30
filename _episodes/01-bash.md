@@ -94,13 +94,11 @@ The rest of the exercises we'll work on today will be with OnDemand.
 {: .callout}
 
 Once you are logged in, you'll see the dashboard. At the top are the pulldown menus we'll use to access the clusters.
-
-![OnDemand Dashboard](../files/Pulldown.png)
-
 On the rest of the page, the Message of the Day (MOTD) is displayed. Always review this information because we post it 
 so users know key changes to clusters and upcoming outages.
 
-![Message of the Day](../files/MOTD.png)
+![OnDemand Dashboard](../files/ODD_73020.png)
+
 
 
 > ## The Command Prompt
