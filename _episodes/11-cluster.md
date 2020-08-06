@@ -228,7 +228,7 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 >
 > * In a terminal window, navigate to the genome directory you created above. `cd genome`
 > * You want to go get the genome through the "Download DNA Sequence" link
-> * We are interested in the `Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa.gz` file.
+> * We are interested in the `Drosophila_melanogaster.BDGP6.28.dna.toplevel.fa.gz` file.
 > * Once you find the file, copy link location
 {: .challenge}
 
