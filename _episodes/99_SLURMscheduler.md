@@ -24,8 +24,8 @@ On an HPC system, the scheduler manages which jobs run where and when.
 
 ![Why do supercomputers use queueing?](../files/queueing_infog.png)
 
-The scheduler used in this lesson is PBS Pro (PBS for short).
-Although PBS is not used everywhere, 
+The scheduler used in this lesson is SLURM.
+Although SLURM is not used everywhere, 
 running jobs is quite similar regardless of what software is being used.
 The exact syntax might change, but the concepts remain the same.
 
@@ -35,29 +35,29 @@ The exact syntax might change, but the concepts remain the same.
 >here will still apply, but the commands will change. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more information.
 {: .callout}
 
-## Running a batch job
+## What is a Batch Script?
 
 The most basic use of the scheduler is to run a command non-interactively.
 This is also referred to as batch job submission.
-In this case, we need to make a script that incorporates some arguments for PBS such as resources needed and modules to load. 
+In this case, we need to make a script that incorporates some arguments for SLURM such as resources needed and modules to load. 
 
 We will use the sleep.sh job script as an example.
-   * Remember to update the project code line: `#PBS -A PZSXXX` with your own project number.
+   * Remember to update the project code line: `#SBATCH --acount=PASXXXX` with your own project number.
 
 ### Parameters
 
-Let's discuss the example PBS script, sleep.sh. Go to File Explorer and edit sleep.sh
+Let's discuss the example SLURM script, sleep.sh. Go to File Explorer and edit sleep.sh
 ```
 sleep.sh
 ```
 ```
 #!/bin/bash
-#PBS -q debug
-#PBS -A PZSXXXX
+#SBATCH --partition=debug
+#SBATCH --account=PZSXXXX
    #Give the job a name 
-#PBS -N test_script
-#PBS -l walltime=00:03:00
-#PBS -l nodes=1:ppn=2
+#SBATCH --job-name=test_job
+#SBATCH --time=00:03:00
+#SBATCH --nodes=1 --ntasks-per-node=2
 
 echo 'This script is running on:'
 hostname
@@ -69,27 +69,29 @@ sleep 120
 Comments in UNIX (denoted by `#`) are typically ignored.
 But there are exceptions.
 For instance the special `#!` comment at the beginning of scripts
-specifies what program should be used to run it (typically `/bin/bash`).
-Schedulers like PBS also have a special comment used to denote special 
+specifies what program should be used to run it (typically `/bin/bash`). This is required in SLURM so don't leave it out!
+Schedulers like SLURM also have a special comment used to denote special 
 scheduler-specific options.
 Though these comments differ from scheduler to scheduler, 
-PBS's special comment is `#PBS`.
-Anything following the `#PBS` comment is interpreted as an instruction to the scheduler.
+SLURM's special comment is `#SBATCH`.
+Anything following the `#SBATCH` comment is interpreted as an instruction to the scheduler.
 
 In our example, we have set the following parameters:
  
-| Flag | Name | Example Setting | Notes|
+| Option | Name | Example Setting | Notes|
 | --- | --- | --- | --- |
-| -q | queue | debug | See next section for queue info |
-| -A | project |PZS| You must specify a project for each job |
-| -N | jobname| test_script | Name of your script (no spaces, alphanumeric only) |
-| -l | resource list| multiple settings| See next segment|
+| --partition | queue | debug | See next section for queue info |
+| --account | project |PZSXXXX | You must specify a project for each job |
+| --job-name | jobname| test_script | Name of your script (no spaces, alphanumeric only) |
+| --time | total job time| multiple settings| See next segment|
+| --nodes | nodes requested| multiple settings| See next segment|
+| --ntasks-per-node | cores per node | multiple settings| See next segment|
 
 ### Resource list
-Resource list will contain a number of settings that informs the PBS scheduler what resources to allocate for your job and for how long (walltime).
+Resource list will contain a number of settings that informs the scheduler what resources to allocate for your job and for how long (walltime).
 
 #### Walltime
-Walltime is represented by `walltime=00:01:01` in the format HH:MM:SS. This will be how long the job will run before timing out.  If your job exceeds this time the scheduler will terminate the job. It is recommended to find a usual runtime for the job and add some more (say 20%) to it. For example, if a job took approximately 10 hours, the walltime limit could be set to 12 hours, e.g. "-l walltime=12:00:00". By setting the walltime the scheduler can perform job scheduling more efficiently and also reduces occasions where errors can leave the job stalled but still taking up resource for the default much longer walltime limit (for queue walltime defaults run "qstat -q" command)
+Walltime is represented by `--time=00:03:00` in the format HH:MM:SS. This will be how long the job will run before timing out.  If your job exceeds this time the scheduler will terminate the job. It is recommended to find a usual runtime for the job and add some more (say 20%) to it. For example, if a job took approximately 10 hours, the walltime limit could be set to 12 hours, e.g. "--time=12:00:00". By setting the walltime the scheduler can perform job scheduling more efficiently and also reduces occasions where errors can leave the job stalled but still taking up resource for the default much longer walltime limit (for queue walltime defaults run "squeue " command)
 
 Resource requests are typically binding.
 If you exceed them, your job will be killed.
@@ -126,7 +128,7 @@ for your jobs.
 Even more importantly, 
 it ensures that another user cannot use more resources than they've been given.
 If another user messes up and accidentally attempts to use all of the CPUs or memory on a node, 
-PBS will either restrain their job to the requested resources or kill the job outright.
+SLURM will either restrain their job to the requested resources or kill the job outright.
 Other jobs on the node will be unaffected.
 This means that one user cannot mess up the experience of others,
 the only jobs affected by a mistake in scheduling will be their own.
@@ -153,7 +155,7 @@ man qsub
 ```
 
 ## Submitting Jobs via command line
-
+## Running a batch job
 To submit this job to the scheduler, we use the `qsub` command.
 
 ```
