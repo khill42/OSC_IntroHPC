@@ -42,7 +42,7 @@ This is also referred to as batch job submission.
 In this case, we need to make a script that incorporates some arguments for SLURM such as resources needed and modules to load. 
 
 We will use the sleep.sh job script as an example.
-   * Remember to update the project code line: `#SBATCH --acount=PASXXXX` with your own project number.
+   * Remember to update the project code line: `#SBATCH --account=PASXXXX` with your own project number.
 
 ### Parameters
 
@@ -102,9 +102,12 @@ and attempt to run a job for two minutes.
 ```
 #!/bin/bash
 
-#PBS -A PZSXXXX
-#PBS -l walltime=00:00:30  ## <- altered to 30 seconds
-#PBS -l nodes=1:ppn=2
+#SBATCH --partition=debug
+#SBATCH --account=PZSXXXX
+   #Give the job a name 
+#SBATCH --job-name=test_job
+#SBATCH --time=00:00:30
+#SBATCH --nodes=1 --ntasks-per-node=2
 
 echo 'This script is running on:'
 hostname
@@ -159,7 +162,7 @@ man qsub
 To submit this job to the scheduler, we use the `qsub` command.
 
 ```
-~> qsub sleep.sh
+~> sbatch sleep.sh
 3818006.owens-batch.ten.osc.edu
 ~>
 ```
