@@ -137,10 +137,10 @@ This means that one user cannot mess up the experience of others,
 the only jobs affected by a mistake in scheduling will be their own.
 
 #### Compute Resources and Parameters
-Compute parameters, represented by `nodes=1:ppn=2` can be considered individually. The argument `nodes` specifies the number of nodes (or chunks of resource) required; `ppn` indicates the number of CPUs per chunk required.
+Compute parameters  The argument `--nodes` specifies the number of nodes (or chunks of resource) required; `--ntasks-per-node` indicates the number of CPUs per chunk required.
 
 
-| nodes |  ppn |  Description|
+| nodes |  tasks |  Description|
 |---|---|---|
 | 2|  16|  32 Processor job, using 2 nodes and 16 processors per node| 
 | 4|  8|  32 Processor job, using 4 nodes and 8 processors per node| 
@@ -154,8 +154,20 @@ Each of these parameters have a default setting they will revert to if not set h
 You can find out more information about these parameters by viewing the manual page of the `qsub` function. This will also show you what the default settings are.
 
 ```
-man qsub
+man sbatch
 ```
+
+> ## Setting up email notifications
+> 
+> Jobs on an HPC system might run for days or even weeks.
+> We probably have better things to do than constantly check on the status of our job
+> with `squeue`.
+> Looking at the [online documentation for `sbatch`](https://slurm.schedmd.com/sbatch.html)
+> (you can also google "sbatch slurm"),
+> can you set up our test job to send you an email when it finishes?
+> 
+> Hint: you will need to use the `--mail-user` and `--mail-type` options.
+{: .challenge}
 
 ## Submitting Jobs via command line
 ## Running a batch job
@@ -169,10 +181,10 @@ To submit this job to the scheduler, we use the `qsub` command.
 The number that first appears is your Job ID. When the job is completed, you will get two files: an Output and an Error file (even if there is no errors). They will be named {JobName}.o{JobID} and {JobName}.e{JobID} respectively.
 
 And that's all we need to do to submit a job. 
-To check on our job's status, we use the command `qstat`.
+To check on our job's status, we use the command `squeue`.
 
 ```
-~> qstat -u username
+~> squeue -u username
 owens-batch.ten.osc.edu: 
                                                                                   Req'd       Req'd       Elap
 Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
@@ -184,8 +196,8 @@ Job ID                  Username    Queue    Jobname          SessID  NDS   TSK 
 
 We can see all the details of our job, most importantly if it is in the "R" or "RUNNING" state.
 Sometimes our jobs might need to wait in a queue ("QUEUED") or have an error.
-The best way to check our job's status is with `qstat`. It is easiest to view just your own jobs
-in the queue with the `qstat -u username`. Otherwise, you get the entire queue.
+The best way to check our job's status is with `squeue`. It is easiest to view just your own jobs
+in the queue with the `squeue -u username`. Otherwise, you get the entire queue.
 
 ## Submit Jobs with job composer on OnDemand
 
