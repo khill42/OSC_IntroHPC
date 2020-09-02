@@ -120,7 +120,11 @@ sleep 120
 Submit the job and wait for it to finish. 
 Once it is has finished, check the error log file. In the error file, there will be
 ```
-=>> PBS: job killed: walltime 77 exceeded limit 30
+This script is running on:
+p0592.ten.osc.edu
+The date is :
+Tue Sep  1 17:14:48 EDT 2020
+slurmstepd: error: *** JOB 18767 ON p0592 CANCELLED AT 2020-09-01T17:15:48 DUE TO TIME LIMIT ***
 
 ```
 
