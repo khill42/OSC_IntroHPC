@@ -276,22 +276,19 @@ Let's submit a job and then cancel it using its job number.
 
 ```
 > sbatch test2.sh
-3818018.owens-batch.ten.osc.edu
+Submitted batch job 3818018
 
 > squeue -u kcahill
-                                                                                 Req'd       Req'd       Elap
-Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
------------------------ ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-3818018.owens-batch.te  kcahill     debug    test_script         --      1      2       8gb  00:03:00 Q       --          
-
+             JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+             3818018 parallel-    hello  kcahill PD       0:00      2 
 ```
 
 Now cancel the job with it's job number. 
 Absence of any job info indicates that the job has been successfully canceled.
 
 ```
-> qdel 3818018
-> qstat -u kcahill
+> scancel 3818018
+> squeue -u kcahill
 >
 ```
 ### Interactive jobs
