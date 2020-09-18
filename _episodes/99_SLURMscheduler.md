@@ -31,8 +31,9 @@ The exact syntax might change, but the concepts remain the same.
 
 >## Upcoming Changes to the Batch System
 >
->We are changing our scheduler and resource manager from Torque and Moab to Slurm. By the end of 2020, all our systems will use Slurm. The concepts described
->here will still apply, but the commands will change. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more information.
+>We are changing our scheduler and resource manager from Torque and Moab to SLURM with a Torque/Moab compatibility layer. By the end of 2020, all our systems will
+>use SLURM, although most Torque/Moab batch scripts will still work. If you are new to OSC or to using the batch system, it makes the most sense to learn the SLURM
+>batch commands.  See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more SLURM information.
 {: .callout}
 
 ## What is a Batch Script?
@@ -42,7 +43,7 @@ This is also referred to as batch job submission.
 In this case, we need to make a script that incorporates some arguments for SLURM such as resources needed and modules to load. 
 
 We will use the sleep.sh job script as an example.
-   * Remember to update the project code line: `#SBATCH --account=PASXXXX` with your own project number.
+
 
 ### Parameters
 
@@ -93,52 +94,59 @@ Resource list will contain a number of settings that informs the scheduler what 
 #### Walltime
 Walltime is represented by `--time=00:03:00` in the format HH:MM:SS. This will be how long the job will run before timing out.  If your job exceeds this time the scheduler will terminate the job. It is recommended to find a usual runtime for the job and add some more (say 20%) to it. For example, if a job took approximately 10 hours, the walltime limit could be set to 12 hours, e.g. "--time=12:00:00". By setting the walltime the scheduler can perform job scheduling more efficiently and also reduces occasions where errors can leave the job stalled but still taking up resource for the default much longer walltime limit (for queue walltime defaults run "squeue " command)
 
-Resource requests are typically binding.
-If you exceed them, your job will be killed.
-Let's use walltime as an example.
-We will request 30 seconds of walltime, 
-and attempt to run a job for two minutes.
+   * Remember to update the project code line: `#SBATCH --account=PASXXXX` with your own project number.
 
-```
-#!/bin/bash
+>--Optional walltime test exercise--
+>
+>Resource requests are typically binding.
+>If you exceed them, your job will be killed.
+>Let's use walltime as an example.
+>We will request 30 seconds of walltime, 
+>and attempt to run a job for two minutes.
+>
+>```
+>#!/bin/bash
+>
+>#SBATCH --partition=debug
+>#SBATCH --account=PZSXXXX
+>   #Give the job a name 
+>#SBATCH --job-name=test_job
+>#SBATCH --time=00:00:30
+>#SBATCH --nodes=1 --ntasks-per-node=2
+>
+>echo 'This script is running on:'
+>hostname
+>echo 'The date is :'
+>date
+>sleep 120
+>
+>```
+>
+>Submit the job and wait for it to finish. 
+>Once it is has finished, check the error log file. In the error file, there will be
+>```
+>This script is running on:
+>p0592.ten.osc.edu
+>The date is :
+>Tue Sep  1 17:14:48 EDT 2020
+>slurmstepd: error: *** JOB 18767 ON p0592 CANCELLED AT 2020-09-01T17:15:48 DUE TO TIME LIMIT ***
+>
+>```
+>
+>Our job was killed for exceeding the amount of resources it requested.
+>Although this appears harsh, this is actually a feature.
+>Strict adherence to resource requests allows the scheduler to find the best possible place
+>for your jobs.
+>Even more importantly, 
+>it ensures that another user cannot use more resources than they've been given.
+>If another user messes up and accidentally attempts to use all of the CPUs or memory on a node, 
+>SLURM will either restrain their job to the requested resources or kill the job outright.
+>Other jobs on the node will be unaffected.
+>This means that one user cannot mess up the experience of others,
+>the only jobs affected by a mistake in scheduling will be their own.
+>
+{: .callout}
 
-#SBATCH --partition=debug
-#SBATCH --account=PZSXXXX
-   #Give the job a name 
-#SBATCH --job-name=test_job
-#SBATCH --time=00:00:30
-#SBATCH --nodes=1 --ntasks-per-node=2
-
-echo 'This script is running on:'
-hostname
-echo 'The date is :'
-date
-sleep 120
-
-```
-
-Submit the job and wait for it to finish. 
-Once it is has finished, check the error log file. In the error file, there will be
-```
-This script is running on:
-p0592.ten.osc.edu
-The date is :
-Tue Sep  1 17:14:48 EDT 2020
-slurmstepd: error: *** JOB 18767 ON p0592 CANCELLED AT 2020-09-01T17:15:48 DUE TO TIME LIMIT ***
-
-```
-
-Our job was killed for exceeding the amount of resources it requested.
-Although this appears harsh, this is actually a feature.
-Strict adherence to resource requests allows the scheduler to find the best possible place
-for your jobs.
-Even more importantly, 
-it ensures that another user cannot use more resources than they've been given.
-If another user messes up and accidentally attempts to use all of the CPUs or memory on a node, 
-SLURM will either restrain their job to the requested resources or kill the job outright.
-Other jobs on the node will be unaffected.
-This means that one user cannot mess up the experience of others,
-the only jobs affected by a mistake in scheduling will be their own.
 
 #### Compute Resources and Parameters
 Compute parameters  The argument `--nodes` specifies the number of nodes (or chunks of resource) required; `--ntasks-per-node` indicates the number of CPUs per chunk required.
@@ -155,7 +163,7 @@ Compute parameters  The argument `--nodes` specifies the number of nodes (or chu
 
 Each of these parameters have a default setting they will revert to if not set however this means your script may act differently to what you expect.
 
-You can find out more information about these parameters by viewing the manual page of the `qsub` function. This will also show you what the default settings are.
+You can find out more information about these parameters by viewing the manual page of the `sbatch` function. This will also show you what the default settings are.
 
 ```
 man sbatch
@@ -175,11 +183,11 @@ man sbatch
 
 ## Submitting Jobs via command line
 ## Running a batch job
-To submit this job to the scheduler, we use the `qsub` command.
+To submit this job to the scheduler, we use the `sbatch` command.
 
 ```
 ~> sbatch sleep.sh
-3818006.owens-batch.ten.osc.edu
+Submitted batch job 40597
 ~>
 ```
 The number that first appears is your Job ID. When the job is completed, you will get two files: an Output and an Error file (even if there is no errors). They will be named {JobName}.o{JobID} and {JobName}.e{JobID} respectively.
@@ -189,17 +197,15 @@ To check on our job's status, we use the command `squeue`.
 
 ```
 ~> squeue -u username
-owens-batch.ten.osc.edu: 
-                                                                                  Req'd       Req'd       Elap
-Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
------------------------ ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-3818006.owens-batch.te  kcahill     debug    test_script         --      1      2       8gb  00:03:00 Q       --   
+
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+             40597 parallel-    hello  kcahill PD       0:00      2 (ReqNodeNotAvail, Reserved for maintenance)  
 ```
 
 {: .output}
 
 We can see all the details of our job, most importantly if it is in the "R" or "RUNNING" state.
-Sometimes our jobs might need to wait in a queue ("QUEUED") or have an error.
+Sometimes our jobs might need to wait in a queue ("PD") or have an error.
 The best way to check our job's status is with `squeue`. It is easiest to view just your own jobs
 in the queue with the `squeue -u username`. Otherwise, you get the entire queue.
 
@@ -246,26 +252,20 @@ Your job will be routed to the appropriate queue based on node and walltime requ
 
 ## Job environment variables
 
-PBS sets multiple environment variables at submission time. The following PBS variables are commonly used in command files: 
+SLURM sets multiple environment variables at submission time. The following variables are commonly used in command files: 
 
 
 | Variable Name |  Description |
 |---|---|
-| PBS_ARRAYID|  Array ID numbers for jobs submitted with the -t flag. For example a job submitted with #PBS -t 1-8 will run eight identical copies of the shell script. The value of the PBS_ARRAYID will be an integer between 1 and 8.|
-| PBS_ENVIRONMENT|  Set to PBS_BATCH to indicate that the job is a batch job; otherwise, set to PBS_INTERACTIVE to indicate that the job is a PBS interactive job.|
-| PBS_JOBID|  Full jobid assigned to this job. Often used to uniquely name output files for this job, for example: mpirun - np 16 ./a.out >output.${PBS_JOBID}|
-| PBS_JOBNAME|  Name of the job. This can be set using the -N option in the PBS script (or from the command line). The default job name is the name of the PBS script.|
-| PBS_NODEFILE|  Contains a list of the nodes assigned to the job. If multiple CPUs on a node have been assigned, the node will be listed in the file more than once. By default, mpirun assigns jobs to nodes in the order they are listed in this file |
-| PBS_O_HOME|  The value of the HOME variable in the environment in which qsub was executed.|
-| PBS_O_HOST|  The name of the host upon which the qsub command is running.|
-| PBS_O_PATH|  Original PBS path. Used with pbsdsh.|
-| PBS_O_QUEUE|  Queue job was submitted to.|
-| PBS_O_WORKDIR|  PBS sets the environment variable PBS_O_WORKDIR to the directory from which the batch job was submitted PBS_QUEUE Queue job is running in (typically this is the same as PBS_O_QUEUE). |
+| SLURM_ARRAY_JOB_ID|  Array ID numbers for jobs submitted with the -t flag. |
+| SLURM_JOB_ID|  Full jobid assigned to this job. Often used to uniquely name output files for this job, for example: srun - np 16 ./a.out >output.${SLURM_JOB_ID}|
+| SLURM_JOB_NAME|  Name of the job. This can be set using the --job-name option in the SLURM script (or from the command line). The default job name is the name of the SLURM script.|
+| SLURM_NTASKS |  The number of processes requested|
+| SLURM_JOB_NUM_NODES |  Number of nodes allocated |
+| SLURM_JOB_PARTITION |  Queue job was submitted to.|
+| SLURM_SUBMIT_DIR|  The directory from which the batch job was submitted. |
 | $TEMPDIR|  Compute node where job is assigned.|
 
-> ## Quick Reference
->A good reference for these and other PBS variables is part of our [Batch Processing at OSC](https://www.osc.edu/supercomputing/batch-processing-at-osc) pages under [Batch-Related Command Summary](https://www.osc.edu/supercomputing/batch-processing-at-osc/batch-related-command-summary).
-{: .callout}
 
 ## Canceling a job
 
@@ -275,10 +275,10 @@ This can be done with the `qdel` command.
 Let's submit a job and then cancel it using its job number.
 
 ```
-> qsub test2.pbs
+> sbatch test2.sh
 3818018.owens-batch.ten.osc.edu
 
-> qstat -u kcahill
+> squeue -u kcahill
                                                                                  Req'd       Req'd       Elap
 Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
 ----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
