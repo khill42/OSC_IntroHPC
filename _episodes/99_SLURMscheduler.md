@@ -236,12 +236,9 @@ Active Jobs. You can filter by your jobs, your group's jobs, and all jobs.
 
 ## Queues
 
-There are usually a number of available queues to use on your HPC. Remember: Each cluster has separate queues. Right now, we 
-are looking only at the queues on Owens. The other clusters have similar queues but they are not the same. 
-To see what queues are available, you can use the command `qstat -Q`. You do not have to specify a queue for most jobs. 
-Your job will be routed to the appropriate queue based on node and walltime request.
-
-![Owens Queue List](../files/queue_list.png)
+There are usually a number of available queues (SLURM also refers to these at partitions) to use on the HPC clusters. Remember: Each cluster has separate queues. 
+Your job will be routed to the appropriate queue based on node and walltime request. Check what queues are available on the system pages at the OSC website.
+(https://www.osc.edu/supercomputing/computing/pitzer/queues_and_reservations)[https://www.osc.edu/supercomputing/computing/pitzer/queues_and_reservations]
 
 
 > ## Submitting resource requests
@@ -296,19 +293,12 @@ Absence of any job info indicates that the job has been successfully canceled.
 Sometimes, you will need a lot of resource for interactive use.
 Perhaps it's the first time running an analysis 
 or we are attempting to debug something that went wrong with a previous job.
-Fortunately, PBS makes it easy to start an interactive job with `qsub -I`:
-
-```
-qsub -I -A PZSXXX -l nodes=1:ppn=28 -l walltime=00:01:00 
-```
-{: .bash}
 
 You can also request interactive jobs on OnDemand using the Interative Apps menu
 
 >## Upcoming Changes to the Batch System
 >
->We are changing our scheduler and resource manager from Torque and Moab to Slurm. By the end of 2020, all our systems will use Slurm. The concepts described
->here will still apply, but the commands will change. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more information.
+>We are changing our scheduler and resource manager from Torque and Moab to SLURM. By the end of 2020, all our systems will use SLURM. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more SLURM information.
 {: .callout}
 
 > ## Submit a job from a template in the Job Composer
