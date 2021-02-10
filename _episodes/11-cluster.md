@@ -100,30 +100,27 @@ All interaction with the compute nodes is handled by a specialized piece of soft
 We can view all of the worker nodes with the `pbsnodes -a` command. But this would be overwhelming since we have over 800 compute nodes, so we'll abbreviate it instead.
 
 ```
-pbsnodes -a | tail -n 50
+scontrol show node="p0685"
 ```
 {: .bash}
 ```
-o0464
-     state = job-exclusive
-     power_state = Running
-     np = 28
-     properties = broadwell-ep,c6320,ib-i1l1s18,ib-i1,eth-owens-rack07h1,owens-rack07-c08,owens-rack07,owens,pfsdir,ime
-     ntype = cluster
-     jobs = 0-27/3816217.owens-batch.ten.osc.edu
-     status = opsys=linux,uname=Linux o0464.ten.osc.edu 3.10.0-693.37.4.el7.x86_64 #1 SMP Fri Aug 10 12:34:55 EDT 2018 x86_64,sessions=2618 147256,nsessions=2,nusers=2,idletime=44307,totmem=182247896kb
-,availmem=167945740kb,physmem=131916252kb,ncpus=28,loadave=23.14,gres=,netload=1368471174094,size=899955648kb:909207804kb,state=free,varattr= ,cpuclock=Fixed,macaddr=7c:d3:0a:b1:66:ea,version=6.1.2,rec
-time=1537282339,jobs=3816217.owens-batch.ten.osc.edu
-     mom_service_port = 15002
-     mom_manager_port = 15003
-     total_sockets = 2
-     total_numa_nodes = 2
-     total_cores = 28
-     total_threads = 28
-     dedicated_sockets = 0
-     dedicated_numa_nodes = 0
-     dedicated_cores = 0
-     dedicated_threads = 28
+NodeName=p0685 Arch=x86_64 CoresPerSocket=24 
+   CPUAlloc=48 CPUTot=48 CPULoad=48.16
+   AvailableFeatures=48core,expansion,exp,c6420,cpu,eth-pitzer-rack14h1,ib-i4l1s19,ib-i4,pitzer-rack14,pitzer-rack14-c02
+   ActiveFeatures=48core,expansion,exp,c6420,cpu,eth-pitzer-rack14h1,ib-i4l1s19,ib-i4,pitzer-rack14,pitzer-rack14-c02
+   Gres=pfsdir:scratch:1,pfsdir:ess:1,ime:1,gpfs:project:1,gpfs:scratch:1,gpfs:ess:1
+   NodeAddr=10.4.14.5 NodeHostName=p0685 Version=20.02.6
+   OS=Linux 3.10.0-1062.18.1.el7.x86_64 #1 SMP Wed Feb 12 14:08:31 UTC 2020 
+   RealMemory=182272 AllocMem=182256 FreeMem=178577 Sockets=2 Boards=1
+   State=ALLOCATED ThreadsPerCore=1 TmpDisk=0 Weight=2 Owner=N/A MCS_label=N/A
+   Partitions=batch,debug,debug-48core,parallel,parallel-48core,serial,serial-48core 
+   BootTime=2021-02-05T10:21:40 SlurmdStartTime=2021-02-05T10:23:18
+   CfgTRES=cpu=48,mem=178G,billing=48,gres/gpfs:ess=1,gres/gpfs:project=1,gres/gpfs:scratch=1,gres/ime=1,gres/pfsdir=2,gres/pfsdir:ess=1,gres/pfsdir:scratch=1
+   AllocTRES=cpu=48,mem=182256M
+   CapWatts=n/a
+   CurrentWatts=0 AveWatts=0
+   ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
+   
 
 
 ```
