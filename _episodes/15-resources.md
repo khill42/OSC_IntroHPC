@@ -29,17 +29,13 @@ you can switch between them pretty easily so you don't have to commit to one for
 busy they are.
 
 OnDemand has a tool to show you how active the clusters are so you can decide where to submit your job. It is in the
-Clusters menu, called System Status. If you select Owens and the week long view, you'll see something like this:
+Clusters menu, called System Status. 
 
-![Owens Node Usage Last Week](../files/Owens-queue-week.png)
-
-Compre this to Pitzer activity:
-
-![Pitzer Node Usage Last Week](../files/Pitzer-queue-week.png)
+![System Status](../files/System_status.png)
 
 Right now, Pitzer seems the better choice.
 
-For the standard compute nodes the main difference in **Owens has 28 cores per node** and _Pitzer has 40 cores per node_.
+For the standard compute nodes the main difference in **Owens has 28 cores per node** and _Pitzer has 40 or 48 cores per node_.
 
 ## Estimating required resources using the scheduler
 
@@ -62,7 +58,7 @@ This value is typically two to three times what you think your job will need.
 > from earlier.
 > 
 > ```
-> bowtie2-build Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa dmel-index
+> bowtie2-build Drosophila_melanogaster.BDGP6.\*.toplevel.fa dmel-index
 > ```
 > {: .bash}
 > 
@@ -74,33 +70,6 @@ This value is typically two to three times what you think your job will need.
 > You might also want to have the scheduler email you to tell you when the job is done.
 {: .challenge}
 
-Once the job completes, we can look at the logfile for a statement of resources used. It will look like this
-
-```
------------------------
-Resources requested:
-nodes=2:ppn=28
------------------------
-Resources used:
-cput=125:18:32
-walltime=02:14:32
-mem=34.824GB
-vmem=77.969GB
------------------------
-Resource units charged (estimate):
-12.556 RUs
------------------------
-```
-{: .bash}
-
-
-
-* **Resources Requested** - What did you request?
-* **cput** - What is the total CPU time used?
-* **Walltime** - How long did the job take?
-* **Memory** - Amount of RAM used.
-* **Virtual Memory** - Amount of total temporary memory used.
-* **Resource Units** - RUs charged against your project for this job.
 
 ## Do not run jobs on the login nodes
 
@@ -111,45 +80,47 @@ is good practice to avoid running anything resource intensive on the login nodes
 Here is an example of a job script that would run the process above on a compute node and copy the results back.
 
 ```
-#PBS -N bowtie-dros
-#PBS -l walltime=01:00:00
-#PBS -l nodes=1:ppn=28
-#PBS -A PZSXXXX
-#PBS -j oe
+#!/bin/bash
+#SBATCH --partition=debug
+#SBATCH --account=PZSXXXX
+   #Give the job a name 
+#SBATCH --job-name=bowtie-dros
+#SBATCH --time=00:45:00
+#SBATCH --nodes=1 --ntasks-per-node=20
 
 set echo
 module load bowtie2
-cd $PBS_O_WORKDIR
-cp Drosophila_melanogaster.BDGP6.dna.toplevel.fa $TMPDIR
+cd $SLURM_SUBMIT_DIR
+cp Drosophila_melanogaster.BDGP6.*toplevel.fa $TMPDIR
 cd $TMPDIR
-bowtie2-build Drosophila_melanogaster.BDGP6.dna.toplevel.fa dros-index
-cp *.* $PBS_O_WORKDIR
-
+bowtie2-build Drosophila_melanogaster.BDGP6.*toplevel.fa dros-index
+cp *.* $SLURM_SUBMIT_DIR
 ```
 {: bash}
 
-This job requests a full node on Owens, which is not needed for this calculation, but if you are unsure about how much 
+This job requests 20 cores on one node, which is not needed for this calculation, but if you are unsure about how much 
 memory or how many processors your job will require, it is okay to request more than you need. As you run jobs, 
 you will get more comfortable identifying the amount of resources you need.
 
 ```
-cd $PBS_O_WORKDIR
+cd $SLURM_SUBMIT_DIR
 ```
 {: bash}
 This line ensures we are in the correct starting directory, where the input files are located. If your input files
 are not in same directory as your job script, you can specify a different location. 
 
 ```
-cp Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa $TMPDIR
+cp Drosophila_melanogaster.BDGP6.*toplevel.fa $TMPDIR
 ```
 {: bash}
 
-Now, we can copy the input file to the compute node, known as `$TMPDIR` until the job is assigned to a node. 
+Now, we can copy the input file to the compute node, known as `$TMPDIR` until the job is assigned to a node. We used a wildcard "\*" to make the
+filename more general and the script more flexible. This is good practice so your job scripts can easily be copied and reused for similar jobs.
 
 ```
 cd $TMPDIR
-bowtie2-build Drosophila_melanogaster.BDGP6.22.dna.toplevel.fa dros-index
-cp *.* $PBS_O_WORKDIR
+bowtie2-build Drosophila_melanogaster.BDGP6.*toplevel.fa dros-index
+cp *.* $SLURM_SUBMIT_DIR
 ```
 {: bash}
 
@@ -160,8 +131,7 @@ specific, based on your job.
 
 A note about memory: Memory (RAM) is allocated based on number of processors requested per node. For example, if you
 request 14 ppn on Owens, that is half the available processors so your job will receive half the available memory (~64GB).
-This applies to Owens and Pitzer. On Ruby, you cannot request less than a whole node, so there is no need to 
-request memory at all.
+This applies to Owens and Pitzer. 
 
 ## Playing nice in the sandbox
 
