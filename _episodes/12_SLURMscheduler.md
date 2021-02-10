@@ -29,9 +29,9 @@ Although SLURM is not used everywhere,
 running jobs is quite similar regardless of what software is being used.
 The exact syntax might change, but the concepts remain the same.
 
->## Upcoming Changes to the Batch System
+>## Changes to the Batch System
 >
->We are changing our scheduler and resource manager from Torque and Moab to SLURM with a Torque/Moab compatibility layer. By the end of 2020, all our systems will
+>We have changed our scheduler and resource manager from Torque and Moab to SLURM with a Torque/Moab compatibility layer. All of our clusters 
 >use SLURM, although most Torque/Moab batch scripts will still work. If you are new to OSC or to using the batch system, it makes the most sense to learn the SLURM
 >batch commands.  See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more SLURM information.
 {: .callout}
@@ -298,7 +298,8 @@ You can also request interactive jobs on OnDemand using the Interative Apps menu
 
 >## Upcoming Changes to the Batch System
 >
->We are changing our scheduler and resource manager from Torque and Moab to SLURM. By the end of 2020, all our systems will use SLURM. See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more SLURM information.
+>We have changed our scheduler and resource manager from Torque and Moab to SLURM with a Torque/Moab compatibility layer. All of our clusters now use SLURM. 
+See [Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html) for more SLURM information.
 {: .callout}
 
 > ## Submit a job from a template in the Job Composer
