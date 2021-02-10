@@ -6,7 +6,7 @@ permalink: /setup/
 
 ## Files for Workshop
 
-Download two files needed for this workshop [sleep.sh](../data/sleep.sh) [bowtie.sh](../data/bowtie.sh)
+Download two files needed for this workshop [sleep.sh](../files/sleep.sh) [bowtie.sh](../files/bowtie.sh)
 
 ## HPC Access
 
