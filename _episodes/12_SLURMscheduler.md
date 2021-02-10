@@ -181,8 +181,34 @@ man sbatch
 > Hint: you will need to use the `--mail-user` and `--mail-type` options.
 {: .challenge}
 
+# Running a batch job (two methods)
+
+## Submit Jobs with job composer on OnDemand
+
+OnDemand also has a tool for job creation and submission to the batch system. The same information as above applies since
+it still uses the same underlying queue system. In the Job Composer, you can create a new location in your home directory
+for a new job, create or transfer a job script and input files, edit everything, and submit your job all from this screen.
+
+We will run this job in the Job Composer by creating a new job from _specified path_.
+
+![NewJob](../files/NewJob.png)
+
+You'll see the Job Options page, like this:
+
+![JobOptions](../files/JobOptions.png)
+
+Fill it in as shown. Path is `~/sleep` and then select Save.
+
+
+To run the job, select green 'play' button.
+
+If job successfully submitted, a green bar will appear on the top of the page.
+
+Also, OnDemand allows you to view the queue for all systems (not just the one you are on in the shell) under Jobs, select
+Active Jobs. You can filter by your jobs, your group's jobs, and all jobs.
+
 ## Submitting Jobs via command line
-## Running a batch job
+
 To submit this job to the scheduler, we use the `sbatch` command.
 
 ```
@@ -208,30 +234,6 @@ We can see all the details of our job, most importantly if it is in the "R" or "
 Sometimes our jobs might need to wait in a queue ("PD") or have an error.
 The best way to check our job's status is with `squeue`. It is easiest to view just your own jobs
 in the queue with the `squeue -u username`. Otherwise, you get the entire queue.
-
-## Submit Jobs with job composer on OnDemand
-
-OnDemand also has a tool for job creation and submission to the batch system. The same information as above applies since
-it still uses the same underlying queue system. In the Job Composer, you can create a new location in your home directory
-for a new job, create or transfer a job script and input files, edit everything, and submit your job all from this screen.
-
-We will run this job in the Job Composer by creating a new job from _specified path_.
-
-![NewJob](../files/NewJob.png)
-
-You'll see the Job Options page, like this:
-
-![JobOptions](../files/JobOptions.png)
-
-Fill it in as shown. Path is `~/sleep` and then select Save.
-
-
-To run the job, select green 'play' button.
-
-If job successfully submitted, a green bar will appear on the top of the page.
-
-Also, OnDemand allows you to view the queue for all systems (not just the one you are on in the shell) under Jobs, select
-Active Jobs. You can filter by your jobs, your group's jobs, and all jobs.
 
 
 ## Queues
