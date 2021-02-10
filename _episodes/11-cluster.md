@@ -61,8 +61,17 @@ These are some useful HPC terms.
 
 ![Structure of Cluster](../files/cluster_login.jpg)
 
-This graphic is a general view of the parts of a cluster. For specific details on the clusters at OSC, check out our 
+This graphic is a general view of the parts of a cluster. 
+
+Here are our current clusters at OSC:
+![Owens Cluster](../files/Owens-graphic.png)
+
+![Pitzer Cluster](../files/Pitzer-graphic.png)
+
+
+To refer to these graphics on the clusters at OSC, check out our 
 Cluster Computing webpage: [https://www.osc.edu/services/cluster_computing](https://www.osc.edu/services/cluster_computing)
+
 
 ## Logging onto the cluster
 
@@ -156,6 +165,16 @@ As of 2010 Jul 16  04:02 project/group PRJ0321 on /nfs/proj01 used 27GB of quota
 
 ```
 {: .output}
+## Memory vs. Storage 
+
+**Memory** holds data that is being calculated on, as well as
+computational instructions. 
+Shared memory is local to one node and several process threads can share the same data addresses.
+Distributed memory is on multiple nodes and each process normally has its own copy or part of the data.
+Each core has an associated amount of memory. For standard compute nodes ~4 GB/core. Large and huge memory nodes ~75 GB/core.
+
+**Storage** holds data that is not currently in use. Different storage types for different needs, how long will the data be held? How does
+it need to be accessed?
 
 ## Moving files to and from the remote system from and to your local computer
 
