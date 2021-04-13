@@ -58,7 +58,7 @@ This value is typically two to three times what you think your job will need.
 > from earlier.
 > 
 > ```
-> bowtie2-build Drosophila_melanogaster.BDGP6.\*\.toplevel.fa dmel-index
+> bowtie2-build Drosophila_melanogaster.BDGP6.\*.toplevel.fa dmel-index
 > ```
 > {: .bash}
 > 
