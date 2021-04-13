@@ -153,7 +153,7 @@ important to know the differences between them.
 | --- | --- | --- | --- |
 | Home ($HOME) | 500GB | Yes | No |
 | Project (/fs/project or /fs/ess/) | By request | Yes | No |
-| Scratch (/fs/scratch/ or /fs/ess/scratch/) | None| No | Yes, 90 days |
+| Scratch (/fs/scratch/ or /fs/ess/scratch/) | 100TB| No | Yes, 90 days |
 | Compute ($TMPDIR) | 1TB | No | Yes, when job completes|
 
 Home directory quota is a hard limit, so keep an eye on your usage. When you log on to the system, you'll see a daily
