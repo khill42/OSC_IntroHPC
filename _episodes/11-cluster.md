@@ -246,6 +246,7 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 > * You want to go get the genome through the "Download DNA Sequence" link
 > * We are interested in the `Drosophila_melanogaster.BDGP6.28.dna.toplevel.fa.gz` file.
 > * Once you find the file, copy link location
+> * alt location available: https://ndownloader.figshare.com/files/27638787 (will need to `mv 27638787 Drosophila_melanogaster.BDGP6.28.dna.toplevel.fa.gz` after transferring file)
 {: .challenge}
 
 > ## Working with compressed files, using unzip and gunzip
