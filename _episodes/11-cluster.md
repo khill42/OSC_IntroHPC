@@ -238,15 +238,10 @@ The syntax is relatively straightforwards: `wget https://some/link/to/a/file.tar
 > The *Drosophila melanogaster* reference genome is located at the following website:
 > [http://metazoa.ensembl.org/Drosophila_melanogaster/Info/Index](http://metazoa.ensembl.org/Drosophila_melanogaster/Info/Index).
 > Download it to the cluster with `wget`.
-> 
+> `cd` to your genome directory
+> Copy this url and paste it onto the command line:
+> ftp://ftp.ensemblgenomes.org:21/pub/metazoa/release-51/fasta/drosophila_melanogaster/dna/Drosophila_melanogaster.BDGP6.32.dna_rm.toplevel.fa.gz
 >
-> Some additional details:
->
-> * In a terminal window, navigate to the genome directory you created above. `cd genome`
-> * You want to go get the genome through the "Download DNA Sequence" link
-> * We are interested in the `Drosophila_melanogaster.BDGP6.28.dna.toplevel.fa.gz` file.
-> * Once you find the file, copy link location
-> * alt location available: https://ndownloader.figshare.com/files/27638787 (will need to `mv 27638787 Drosophila_melanogaster.BDGP6.28.dna.toplevel.fa.gz` after transferring file)
 {: .challenge}
 
 > ## Working with compressed files, using unzip and gunzip
