@@ -162,7 +162,7 @@ So here are a couple final words to live by:
 * Always use the default compilers if possible. Newer compilers are great, but older stuff generally
   means that your software will still work, even if a newer compiler is loaded.
 
->###Final Exercise
+>### Final Exercise
 > We will run the bowtie job in the Job Composer by creating a job from specified path.
 > * In the Job Composer, select New Job and From Specified Path
 > * In the new window, enter the path for your job. It should be ` ~username/genome`
