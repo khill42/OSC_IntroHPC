@@ -162,13 +162,14 @@ So here are a couple final words to live by:
 * Always use the default compilers if possible. Newer compilers are great, but older stuff generally
   means that your software will still work, even if a newer compiler is loaded.
 
->### Final Exercise
+> ## Final Exercise
 > We will run the bowtie job in the Job Composer by creating a job from specified path.
 > * In the Job Composer, select New Job and From Specified Path
 > * In the new window, enter the path for your job. It should be ` ~username/genome`
-> * Fill out the rest of the form as much as you know
+> * Fill out the rest of the form with the job name, the name of the job script file, cluster, and project code. For this exercise, we will use Owens.
 > * Select Save
 > You'll see your job in the composer list. Now, we need to update the job script with your project code and correct file names.
 > Update and save the file and then click the green Submit button. If you see a green bar at the top, it was submitted successfully.
 > If the job runs successfully, you'll see new files added to your job directory.
-{: .callout}
+{: .challenge}
+
